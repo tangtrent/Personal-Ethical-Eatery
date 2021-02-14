@@ -49,13 +49,16 @@ table {
 .App {
   text-align: center;
 }
-body {
-}
 .nav-container {
   background-color: rgb(255, 255, 255);
   height: auto;
   width: 100%;
   padding: 20px 38px;
+}
+.landing-page-header {
+  background-color: blueviolet;
+  display: block;
+  justify-content: right;
 }
 nav {
   display: flex;
@@ -77,8 +80,15 @@ div {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  /* border: 1px solid black;
-  border-radius: 10px; */
+}
+.header-button:hover {
+  color: rgb(39, 39, 39);
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(255, 216, 190);
+  box-shadow: 10px 5px 5px black;
+  transition-property: all;
+  transition-duration: 0.3s;
 }
 .main-display-container {
   display: flex;
