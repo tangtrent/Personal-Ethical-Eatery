@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class LandingPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       query: '',
     }
@@ -13,7 +13,7 @@ export default class LandingPage extends Component {
       <div className="">
         <div className="nav-container">
           <div className="landing-page-header">
-            <div className="header-button">Log In/Sign Up</div>
+            <div className="header-button" onClick={this.props.handleLogInClick}>Log In/Sign Up</div>
           </div>
         </div>
 

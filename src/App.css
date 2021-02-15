@@ -66,7 +66,7 @@ nav {
   align-items: center;
   background-color: rgb(255, 255, 255);
   min-height: 68px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   border-radius: 25px;
 }
 div {
@@ -94,8 +94,8 @@ div {
   display: flex;
   height: 100%;
   background-color: rgb(255, 255, 255);
-  /* height: 100%;
-  width: 100%; */
+  height: 100%;
+  width: 100%;
   padding: 0px 55px;
   /* margin: 25px 0px; */
 }
@@ -105,7 +105,7 @@ div {
   height: 68.7vh;
   padding: 15px;
   align-items: center;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   border-radius: 25px;
 }
 .footer-container {

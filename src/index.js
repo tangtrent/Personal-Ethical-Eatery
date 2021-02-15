@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Components/App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import firebase from 'firebase';
-
-// firebase.initializeApp(firebaseConfig);
+// import SignIn from './Components/SignIn/SignIn'
+// import firebase from 'firebase';
 
 ReactDOM.render(
   <React.StrictMode>
