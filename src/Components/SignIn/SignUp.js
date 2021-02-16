@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Button, Card, Alert } from 'react-bootstrap'
+import { Form, Button, Card, Alert, Container, Navbar } from 'react-bootstrap';
 import { useAuth } from '../../Context/AuthContext'
 
 const SignUp = () => {
@@ -32,7 +32,12 @@ const SignUp = () => {
   }
 
   return (
-    <>
+    <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
+    <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px", border: "0px"}}>
+      <Navbar.Brand></Navbar.Brand>
+    </Navbar>
+    <Card className='d-flex justify-content-center' style={{ height: "65vh", border: "0px" }}>
+      <Card.Body>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
@@ -57,7 +62,12 @@ const SignUp = () => {
       <div className="w-100 text-center mt-2">
         Already have an Account? <Link to="LogIn">Log In</Link>
       </div>
-    </>
+      </Card.Body>
+      </Card>
+      <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px", border: "0px"}}>
+        <Navbar.Brand></Navbar.Brand>
+      </Navbar>
+    </Container>
   );
 };
 export default SignUp;
