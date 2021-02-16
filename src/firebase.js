@@ -3,13 +3,13 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBAST_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  apiKey: 'AIzaSyB9n98NjbvVOpG4iWtYx6RFSwvdmKa8Xc4',
+  authDomain: 'ethical-eater.firebaseapp.com',
+  projectId: 'ethical-eater',
+  storageBucket: 'ethical-eater.appspot.com',
+  messagingSenderId: '1019884864903',
+  appId: '1:1019884864903:web:098499a4dd3c2d9fe2ff22',
+  measurementId: 'G-GWHK1SW149'
 };
 
 const provider = new firebase.auth.GoogleAuthProvider();

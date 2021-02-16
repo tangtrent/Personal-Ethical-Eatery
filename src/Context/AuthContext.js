@@ -12,12 +12,12 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password).then(cred => {
-      return firestore.collection('users').doc(cred.user.uid).set({
-        email: 'did@this.work',
-        newField: 'this '
+    return auth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        firestore.collection('users').doc(result.user.uid).set({ name: 'hello' })
       })
-    })
+      .catch((err) => { console.log(err); })
+
   }
 
   function login(email, password) {
