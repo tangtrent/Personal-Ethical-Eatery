@@ -11,10 +11,13 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
-      .then(result => {
-        firestore.collection('users').doc(result.user.uid).set({ name: 'hello' })
+  function signup(email, password, firstName, lastName) {
+    return auth.createUserWithEmailAndPassword(email, password).then(cred => {
+        firestore.collection('users').doc(cred.user.uid).set({
+          email: email,
+          firstName: firstName,
+          lastName: lastName
+        })
       })
       .catch(err => { console.log(err); })
     }
