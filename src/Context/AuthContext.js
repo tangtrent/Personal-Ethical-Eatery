@@ -14,8 +14,9 @@ export function AuthProvider({ children }) {
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password).then(cred => {
       return firestore.collection('users').doc(cred.user.uid).set({
-        email: 'did@this.work',
-        newField: 'this '
+        email: cred.user.email,
+        fistName: ''
+        lastName: '',
       })
     })
   }
