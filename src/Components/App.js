@@ -13,7 +13,7 @@ import PrivateRoute from './SignIn/PrivateRoute';
 function App() {
   return (
     <Container className="d-flex align-center justify-content-center" style={{ minHeight: "100vh"}}>
-      <div className="w-100">
+      <div className="w-100" style={{ maxWidth: '100vh' }}>
         <Router>
         <AuthProvider>
           <Switch>
