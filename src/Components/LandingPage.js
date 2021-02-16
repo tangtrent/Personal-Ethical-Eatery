@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Container, Navbar, Nav, Form, Button, Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 export default class LandingPage extends Component {
   constructor(props) {
@@ -10,28 +12,35 @@ export default class LandingPage extends Component {
 
   render() {
     return (
-      <div className="">
-        <div className="nav-container">
-          <div className="landing-page-header">
-            <div className="header-button" onClick={this.props.handleLogInClick}>Log In/Sign Up</div>
-          </div>
-        </div>
+      <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
+      <Navbar className='d-flex justify-content-end' style={{minHeight: "100px"}}>
+        <Nav>
+          {/* <Link to="LogIn">Log In |</Link>
+          <Link to="SignUp">| Sign Up</Link> */}
+          <Nav.Link href="LogIn">Log In</Nav.Link>
+          <Nav.Link href="SignUp">Sign Up</Nav.Link>
+        </Nav>
+      </Navbar>
 
-        <div className="main-display-container">
-          <div className={this.state.aboutUsClassName}>
-            <form>
-              <input placeholder="Search Restaurants"></input>
-              <button>Search</button>
-            </form>
-          </div>
-        </div>
+      <Card style={{height: "65vh", border: "0px"}}>
+        <Card.Body className='d-flex justify-content-center'>
+          <Form >
+            <h1>Where are we eating today?</h1>
+            <Form.Group controlId="formRestaurantSearch" className="d-flex">
+              <Form.Control type="text" placeholder="Search Restaurants..." className="mr-sm-2"/>
+              <Button variant="outline-info">Search</Button>
+            </Form.Group>
+          </Form>
+        </Card.Body>
+      </Card>
 
-        <div className="footer-container hidden">
-          <footer>
+      <Navbar className='d-flex justify-content-center align-items-center' style={{minHeight: "100px"}}>
+        <Nav >
+          <Nav.Link>About Us</Nav.Link>
+        </Nav>
+      </Navbar>
 
-          </footer>
-        </div>
-      </div>
+    </Container>
     )
   }
 }
