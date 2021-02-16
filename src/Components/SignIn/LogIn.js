@@ -27,9 +27,9 @@ const LogIn = () => {
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh", maxWidth: "600px" }}>
-      <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px", border: "0px"}}>
+      {/* <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px", border: "0px", maxWidth: "100vh" }}>
         <Navbar.Brand></Navbar.Brand>
-      </Navbar>
+      </Navbar> */}
       <Card className='d-flex justify-content-center' style={{ height: "65vh", border: "0px" }}>
         <Card.Body>
       <Card>
