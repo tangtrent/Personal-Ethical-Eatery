@@ -32,7 +32,7 @@ const SignUp = () => {
   }
 
   return (
-    <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
+    <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh", maxWidth: "600px" }}>
     <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px", border: "0px"}}>
       <Navbar.Brand></Navbar.Brand>
     </Navbar>
