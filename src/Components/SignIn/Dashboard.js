@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Button, Alert, Container, Navbar, Nav, Tabs, Tab, ListGroup } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
-import LandingPage from '../LandingPage'
+import { firestore } from '../../firebase.js';
 
 export default function Dashboard() {
   const [error, setError] = useState('')
+  const [userInfo, setUserInfo] = useState()
   const { currentUser, logout } = useAuth()
   const history = useHistory()
 
@@ -19,6 +20,15 @@ export default function Dashboard() {
       setError('Failed to log out')
     }
   }
+
+  useEffect(() => {
+    firestore.collection('users').doc(currentUser.uid).get()
+      .then((doc) => {
+        setUserInfo(doc)
+      })
+      .then(() => { console.log(userInfo); })
+      .catch(err => { console.error(err); })
+  }, [])
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
@@ -58,48 +68,6 @@ export default function Dashboard() {
                     </ListGroup.Item>
                     <ListGroup.Item>
                       Restaurant 3
-                      <div style={{display: 'inline', float: 'right'}}>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-                      </div>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      Restaurant 1
-                      <div style={{display: 'inline', float: 'right'}}>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-                      </div>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      Restaurant 2
-                      <div style={{display: 'inline', float: 'right'}}>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-                      </div>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      Restaurant 3
-                      <div style={{display: 'inline', float: 'right'}}>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-                      </div>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      Restaurant 1
-                      <div style={{display: 'inline', float: 'right'}}>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-                      </div>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      Restaurant 1
-                      <div style={{display: 'inline', float: 'right'}}>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-                        <Button style={{fontSize: '1.5rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-                      </div>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      Restaurant 1
                       <div style={{display: 'inline', float: 'right'}}>
                         <Button style={{fontSize: '1.5rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
                         <Button style={{fontSize: '1.5rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>

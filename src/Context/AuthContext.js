@@ -13,13 +13,10 @@ export function AuthProvider({ children }) {
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
-      .then(cred => {
-        firestore.collection('users').doc(cred.user.uid).set({
-          email: cred.user.email,
-          firstName: '',
-          lastName: ''
-        })
+      .then(result => {
+        firestore.collection('users').doc(result.user.uid).set({ name: 'hello' })
       })
+      .catch(err => { console.log(err); })
     }
 
   function login(email, password) {
