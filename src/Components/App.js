@@ -8,13 +8,13 @@ import LandingPage from './LandingPage';
 import Restaurant from './Restaurant/Restaurant';
 import SignUp from './SignIn/SignUp';
 import LogIn from './SignIn/LogIn';
-import Dashboard from './SignIn/Dashboard';
+import Dashboard from './SignIn/Dashboard/Dashboard';
 import PrivateRoute from './SignIn/PrivateRoute';
 
 function App() {
   return (
     <Container className="d-flex align-center justify-content-center" style={{ minHeight: "100vh"}}>
-      <div className="w-100" >
+      <div className="w-100">
         <Router>
         <AuthProvider>
           <Switch>
