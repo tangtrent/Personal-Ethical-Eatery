@@ -1,19 +1,20 @@
 import React, { Component, useState} from 'react';
-import { Container, Navbar, Nav, Form, Button, Card } from 'react-bootstrap'
+import { Container, Navbar, Nav, Form, Button, Card, CardGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { firestore } from '../firebase.js';
+import RestaurantsList from './LandingPage/RestaurantsList.js'
 
 const LandingPage = () => {
 
   const [search, setSearch] = useState('');
-  const [restaurants, setRestaurants] = useState([{name: 'hello there'}]);
+  const [restaurants, setRestaurants] = useState([{name: 'restaurant'}]);
 
   const submitSearch = () => {
     firestore.collection('restaurants').where('name', '==', `${search}`).get()
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map((eachDoc) => eachDoc.data());
-        // console.log(data)
         setRestaurants(data);
+        console.log(data)
       })
       .catch((err) => {
         console.log(err)
@@ -42,6 +43,7 @@ const LandingPage = () => {
             </Form.Group>
           </Form>
         </Card.Body>
+        <RestaurantsList restaurants={restaurants}/>
       </Card>
 
       <Navbar className='d-flex justify-content-center align-items-center' style={{minHeight: "100px"}}>
