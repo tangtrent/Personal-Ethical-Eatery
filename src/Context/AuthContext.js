@@ -16,7 +16,8 @@ export function AuthProvider({ children }) {
         firestore.collection('users').doc(cred.user.uid).set({
           email: email,
           firstName: firstName,
-          lastName: lastName
+          lastName: lastName,
+          restaurants: []
         })
       })
       .catch(err => { console.log(err); })
