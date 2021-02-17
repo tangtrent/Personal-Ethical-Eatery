@@ -7,7 +7,7 @@ import { AuthProvider } from '../Context/AuthContext';
 import LandingPage from './LandingPage';
 import SignUp from './SignIn/SignUp';
 import LogIn from './SignIn/LogIn';
-import Dashboard from './SignIn/Dashboard';
+import Dashboard from './SignIn/Dashboard/Dashboard';
 import PrivateRoute from './SignIn/PrivateRoute';
 
 function App() {
