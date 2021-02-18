@@ -8,8 +8,9 @@ import LandingPage from './LandingPage';
 import Restaurant from './Restaurant/Restaurant';
 import SignUp from './SignIn/SignUp';
 import LogIn from './SignIn/LogIn';
-import Dashboard from './SignIn/Dashboard/Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './SignIn/PrivateRoute';
+import ModalPage from './CreateRestaurant/ModalPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" component={LogIn} />
             <Route path="/restaurant" component={Restaurant} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path='/ModalPage' component={ModalPage} />
           </Switch>
         </AuthProvider>
         </Router>
