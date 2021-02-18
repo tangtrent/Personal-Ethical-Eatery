@@ -26,25 +26,28 @@ export default function Dashboard() {
     }
   }
 
-  // async function onCreate() {
-  //   try {
-  //     await firestore.collection('restaurants').add({
-  //       name: '',
-  //       address: {streetNumber: '',
-  //                 state: '',
-  //                 city: '',
-  //                 zip: ''},
-  //       menu: [],
-  //       phone: '',
-  //       email: '',
-  //       restaurauntType: '',
-  //       restaurantImgUrl: '',
-  //       owner: currentUser.uid,
-  //     })
-  //   } catch(err) {
-  //     console.error(err);
-  //   }
-  // }
+  function onCreate() {
+    try {
+       firestore.collection('restaurants').add({
+        name: '',
+        address: {streetNumber: '',
+                  state: '',
+                  city: '',
+                  zip: ''},
+        menu: [],
+        phone: '',
+        email: '',
+        restaurauntType: '',
+        restaurantImgUrl: '',
+        owner: currentUser.uid,
+      })
+      .then((doc) => {
+        console.log(doc.data())
+      })
+    } catch(err) {
+      console.error(err);
+    }
+  }
 
   useEffect(() => {
     try {
@@ -56,6 +59,8 @@ export default function Dashboard() {
       console.error(err)
     }
   }, [])
+
+  console.log(userInfo)
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
@@ -91,7 +96,7 @@ export default function Dashboard() {
             {error && <Alert variant="danger">{error}</Alert>}
             <p className='mt-3 d-flex justify-content-center'>You can create a new restaurant, or edit an existing one:</p>
             <div className='d-flex justify-content-center'>
-              <Button className='m-5' variant="danger" size='lg' style={{minHeight: '70px', minWidth: '200px', maxWidth: '200px'}}>Create restaurant</Button>
+              <Button className='m-5' variant="danger" size='lg' style={{minHeight: '70px', minWidth: '200px', maxWidth: '200px'}} onClick={onCreate}>Create restaurant</Button>
               <Button className='m-5' variant="danger" size='lg' style={{minHeight: '100px', minWidth: '200px', maxWidth: '200px'}} onClick={handleShow}>Edit restaurant</Button>
             </div>
             <Modal show={show} onHide={handleClose}>

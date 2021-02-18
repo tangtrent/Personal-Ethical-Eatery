@@ -6,6 +6,10 @@ export default function DashboardRestaurants(props) {
   console.log(props)
   if (!props) {
     return null;
+  } else if (props.userInfo.restaurants.length === 0) {
+    return (
+      <div>Create a restaurant first!</div>
+    )
   } else {
     return (
       <>

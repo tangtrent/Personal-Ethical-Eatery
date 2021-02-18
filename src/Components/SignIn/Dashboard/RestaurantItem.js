@@ -3,6 +3,7 @@ import { Card, Button, Alert, Container, Navbar, Nav, Tabs, Tab, ListGroup } fro
 
 
 export default function RestaurantItem(props) {
+  console.log(props)
   return (
     <>
       <ListGroup style={{maxHeight: '75px', maxWidth: '100%', minHeight: '50vh', minWidth: '100%', fontSize: '3rem'}}>
@@ -11,55 +12,6 @@ export default function RestaurantItem(props) {
           <div style={{display: 'inline', float: 'right'}}>
             <Button style={{fontSize: '1.25rem', marginRight: '4px'}}>Edit</Button>
             <Button variant='danger' style={{fontSize: '1.25rem', minHeight: '5px'}}>Delete</Button>
-          </div>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          {props.restaurant.name}
-          <div style={{display: 'inline', float: 'right'}}>
-            <Button style={{fontSize: '1.25rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-            <Button variant='danger' style={{fontSize: '1.25rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-          </div>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          {props.restaurant.name}
-          <div style={{display: 'inline', float: 'right'}}>
-            <Button style={{fontSize: '1.25rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-            <Button variant='danger' style={{fontSize: '1.25rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-          </div>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          {props.restaurant.name}
-          <div style={{display: 'inline', float: 'right'}}>
-            <Button style={{fontSize: '1.25rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-            <Button variant='danger' style={{fontSize: '1.25rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-          </div>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          {props.restaurant.name}
-          <div style={{display: 'inline', float: 'right'}}>
-            <Button style={{fontSize: '1.25rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-            <Button variant='danger' style={{fontSize: '1.25rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-          </div>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          {props.restaurant.name}
-          <div style={{display: 'inline', float: 'right'}}>
-            <Button style={{fontSize: '1.25rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-            <Button variant='danger' style={{fontSize: '1.25rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-          </div>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          {props.restaurant.name}
-          <div style={{display: 'inline', float: 'right'}}>
-            <Button style={{fontSize: '1.25rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-            <Button variant='danger' style={{fontSize: '1.25rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
-          </div>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          {props.restaurant.name}
-          <div style={{display: 'inline', float: 'right'}}>
-            <Button style={{fontSize: '1.25rem', minWidth: '10%', marginRight: '4px'}}>Edit</Button>
-            <Button variant='danger' style={{fontSize: '1.25rem', minWidth: '10%', minHeight: '5px'}}>Delete</Button>
           </div>
         </ListGroup.Item>
       </ListGroup>
