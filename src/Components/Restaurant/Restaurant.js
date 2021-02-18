@@ -6,10 +6,11 @@ import MenuItems from './MenuItems'
 import AboutUs from './AboutUs'
 import Contact from './Contact'
 
-export default function Restaurant() {
+export default function Restaurant(props) {
+  console.log(props)
   const [restaurant, setRestaurant] = useState({menu: [{itemImgUrl: 'https://picsum.photos/200',}], address: {}})
 
-  let query = firestore.collection("restaurants").doc("jg4VGdICBjpXDFIzj4We");
+  let query = firestore.collection("restaurants").doc(`${props.restaurantId}`);
 
   useEffect(() => {
     try {
