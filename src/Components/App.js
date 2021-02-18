@@ -1,7 +1,7 @@
 import '../App.css';
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Container, Nav } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { AuthProvider } from '../Context/AuthContext';
 
 import LandingPage from './LandingPage';
