@@ -1,13 +1,14 @@
 import React from 'react'
+import { Card } from 'react-bootstrap'
 
 import MenuItemInstance from './MenuItemInstance'
 
-export default function MenuItems({ restaurant }) {
+export default function MenuItems({ restaurant, handleAddToCart }) {
   return (
-    <div>
+    <Card>
       {restaurant.menu.map((currentMenuItem, key) => {
-        return <MenuItemInstance currentMenuItem={currentMenuItem} key={key}/>
+        return <MenuItemInstance currentMenuItem={currentMenuItem} handleAddToCart={handleAddToCart} key={key}/>
       })}
-    </div>
+    </Card>
   )
 }

@@ -10,10 +10,8 @@ export default function Contact({ restaurant }) {
       <br/>
       {restaurant.address.streetNumber}
       <br/>
-      {restaurant.address.city}
-      <br/>
-      {restaurant.address.state},
-      <br/>
+      {restaurant.address.city},{' '}
+      {restaurant.address.state},{' '}
       {restaurant.address.zip}
     </Card>
   )
