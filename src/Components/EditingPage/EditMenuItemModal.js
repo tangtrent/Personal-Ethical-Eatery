@@ -65,14 +65,14 @@ export default function EditMenuItem(props) {
       props.handleClose()
     }}>
       <Modal.Header closeButton>
-        <input placeholder={props.item.name} onChange={handleName}/>
-        <input placeholder={props.item.price} type='number' onChange={handlePrice}/>
+        <input placeholder='name' onChange={handleName}/>
+        <input placeholder='price' type='number' onChange={handlePrice}/>
       </Modal.Header>
 
       <Modal.Body>
-        <input placeholder={props.item.itemImgUrl} onChange={handleItemImgUrl}/>
-        <input placeholder={props.item.itemType} onChange={handleItemType}/>
-        <textarea className='w-100 h-100' placeholder={props.item.description} onChange={handleDescription}/>
+        <input placeholder='Item Image Url' onChange={handleItemImgUrl}/>
+        <input placeholder='Item Type' onChange={handleItemType}/>
+        <textarea className='w-100 h-100' placeholder='Description' onChange={handleDescription}/>
         {warning && <Badge variant='secondary'>Missing Fields</Badge>}
       </Modal.Body>
 

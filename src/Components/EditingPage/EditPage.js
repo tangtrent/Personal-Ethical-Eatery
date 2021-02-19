@@ -34,26 +34,38 @@ function EditPage() {
       menu: update
     })
     .then(() => {
-      console.log('Update Success')
+      getRequest()
     })
     .catch(() => {
       console.error('Update Failure')
     })
   }
-
+  const getRequest = () => {
+    query.get()
+    .then((doc) => {
+      if (doc.exists) {
+        setItem(doc.data())
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }
   useEffect(() => {
     query.get()
-      .then((doc) => {
-        if (doc.exists) {
-          setItem(doc.data())
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  },[item])
+    .then((doc) => {
+      if (doc.exists) {
+        setItem(doc.data())
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  },[])
 
   const addItem = () => {
     setItem(item => {
@@ -61,6 +73,8 @@ function EditPage() {
       return item
     })
   }
+
+  console.log('infinite loop')
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
       <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px"}}>
