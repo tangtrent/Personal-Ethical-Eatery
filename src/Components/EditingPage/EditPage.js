@@ -8,21 +8,17 @@ import AddMenuItemModal from './AddMenuItemModal'
 import { firestore } from '../../firebase'
 
 
-function EditPage() {
+function EditPage({ editId }) {
   const [addModal, setAddModal] = useState(false)
   const [editModal, setEditModal] = useState(false)
   const [selectedEdit, setSelectedEdit] = useState(0)
   const [page , setPage] = useState('Menu')
   const [item, setItem] = useState({aboutUs: 'asdf', address: {city: 'asdf', state: 'asdf', streetNumber: 'asdf', zip: 'asdf'}, imgurl: '', menu: [{description: 'asdf', itemImgUrl: 'asdf', itemType: 'asdf', name: 'asdf', price: 'asdf'}], name: 'asdf', phone: 'asdf', type: ['','','']})
 
-  let query = firestore.collection("restaurants").doc("jg4VGdICBjpXDFIzj4We");
+  let query = firestore.collection("restaurants").doc(`${editId}`);
 
-  const showAddModal = () => {
-    setAddModal(!addModal)
-  }
-  const showEditModal = () => {
-    setEditModal(!editModal)
-  }
+  const showAddModal = () => { setAddModal(!addModal) }
+  const showEditModal = () => { setEditModal(!editModal) }
   const handleSelection = (selected) => {
     setSelectedEdit(selected)
     showEditModal()
@@ -53,7 +49,7 @@ function EditPage() {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  },[])
+  }, [])
 
   const addItem = () => {
     setItem(item => {
@@ -61,6 +57,8 @@ function EditPage() {
       return item
     })
   }
+
+  console.log(item)
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
       <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px"}}>
@@ -72,7 +70,7 @@ function EditPage() {
       </Navbar>
 
       <Card className='d-flex justify-content-start' style={{height: "65vh"}}>
-        {page === "Menu" && <Menu item={item} handleOpen={showAddModal} selection={(selected) => handleSelection(selected)} deletion={(deleted) => handleDeletion(deleted)}/>}
+        {page === "Menu" && <Menu item={item} restaurantId={editId} handleOpen={showAddModal} selection={(selected) => handleSelection(selected)} deletion={(deleted) => handleDeletion(deleted)}/>}
         {page === "Contact" && <Contact item={item}/>}
         {page === "AboutUs" && <AboutUs item={item}/>}
       </Card>
@@ -84,8 +82,8 @@ function EditPage() {
           <Nav.Link>Facebook</Nav.Link>
         </Nav>
       </Navbar>
-      <EditMenuItemModal item={item.menu[selectedEdit]} index={selectedEdit} menu={item.menu} show={editModal} handleClose={showEditModal} />
-      <AddMenuItemModal show={addModal} handleClose={showAddModal} menu={item.menu}/>
+      <EditMenuItemModal item={item.menu[selectedEdit]} index={selectedEdit} menu={item.menu} show={editModal} handleClose={showEditModal} restaurantId={editId}/>
+      <AddMenuItemModal show={addModal} handleClose={showAddModal} menu={item.menu} restaurantId={editId}/>
     </Container>
   );
 }

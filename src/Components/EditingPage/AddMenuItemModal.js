@@ -11,7 +11,7 @@ export default function AddMenuItem(props) {
   const [itemImgUrl, setItemImgUrl] = useState('')
   const [warning, setWarning] = useState(false)
 
-  let query = firestore.collection("restaurants").doc("jg4VGdICBjpXDFIzj4We");
+  let query = firestore.collection("restaurants").doc(props.restaurantId);
 
   const handleName = (e) => {
     setName(e.target.value)

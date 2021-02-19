@@ -10,7 +10,9 @@ export default function EditMenuItem(props) {
   const [itemImgUrl, setItemImgUrl] = useState('')
   const [warning, setWarning] = useState(false)
 
-  let query = firestore.collection("restaurants").doc("jg4VGdICBjpXDFIzj4We");
+  let query = firestore.collection("restaurants").doc(props.restaurantId);
+
+  console.log(props)
 
   const handleName = (e) => {
     setName(e.target.value)
@@ -65,14 +67,14 @@ export default function EditMenuItem(props) {
       props.handleClose()
     }}>
       <Modal.Header closeButton>
-        <input placeholder={props.item.name} onChange={handleName}/>
-        <input placeholder={props.item.price} type='number' onChange={handlePrice}/>
+        <input placeholder='Name' onChange={handleName}/>
+        <input placeholder='Price' type='number' onChange={handlePrice}/>
       </Modal.Header>
 
       <Modal.Body>
-        <input placeholder={props.item.itemImgUrl} onChange={handleItemImgUrl}/>
-        <input placeholder={props.item.itemType} onChange={handleItemType}/>
-        <textarea className='w-100 h-100' placeholder={props.item.description} onChange={handleDescription}/>
+        <input placeholder='Item Image' onChange={handleItemImgUrl}/>
+        <input placeholder='Item Type' onChange={handleItemType}/>
+        <textarea className='w-100 h-100' placeholder='Item Description' onChange={handleDescription}/>
         {warning && <Badge variant='secondary'>Missing Fields</Badge>}
       </Modal.Body>
 
