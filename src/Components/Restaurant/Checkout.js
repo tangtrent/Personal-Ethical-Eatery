@@ -32,10 +32,14 @@ export default function Checkout( { cart, total, handleRemoveFromCart } ) {
   function handleToken(token, addresses) {
   }
   return (
-    <Card className="mt-2 p-2 overflow-auto" style={{ width: "400px" }}>
+    <div className="d-flex flex-column align-items-center">
       <h1>Total: ${total}</h1>
+    <Card className="mt-auto overflow-auto" style={{ width: "400px", border: "0px" }}>
       <Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>
-      <StripeCheckout stripeKey="pk_test_51ILuS0Fp1MZdStAzmZuANmYRFR8ahWoReeciJKWQnCdBppxfNJ0SJSH5TYF0Aa0rksYtzRjt8SpX98EepSPl4B5w00H8CqOYdu" tokey={handleToken} />
     </Card>
+      <div className="mt-2">
+      <StripeCheckout stripeKey="pk_test_51ILuS0Fp1MZdStAzmZuANmYRFR8ahWoReeciJKWQnCdBppxfNJ0SJSH5TYF0Aa0rksYtzRjt8SpX98EepSPl4B5w00H8CqOYdu" tokey={handleToken} />
+      </div>
+    </div>
   )
 }

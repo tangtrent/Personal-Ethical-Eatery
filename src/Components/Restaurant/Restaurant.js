@@ -51,43 +51,46 @@ export default function Restaurant(props) {
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
       <Navbar className='d-flex align-items-center mh-20' style={{minHeight: "20px"}}>
-        <Nav>
-          <Nav.Link href="/">Back</Nav.Link>
+        <Nav variant="pills">
+          <Nav.Link href="/">Back to Home</Nav.Link>
         </Nav>
       </Navbar>
 
-      <Card className='d-flex justify-content-center overflow-auto' style={{height: "60vh"}}>
-        <Card.Body>
-        <Tabs fill defaultActiveKey='Menu' id='options-tab' style={{fontSize: '1rem', borderBottom: "1px solid black"}}>
+      {/* <Card className='d-flex justify-content-center' style={{height: "60vh"}}>
+        <Card.Body> */}
+        <Tabs fill defaultActiveKey='Menu' id='options-tab' style={{fontSize: '1rem', borderBottom: "1px solid #dee2e6"}}>
             <Tab eventKey='Menu' title='View Menu / Order'>
-              <Tab.Pane className='d-flex justify-content-center align-items-center h-100px' style={{minHeight: '50vh', maxHeight: '50vh'}}>
+              <Tab.Pane className='d-flex justify-content-center align-items-center overflow-auto mt-auto' style={{height: '75vh'}}>
                 <MenuItems restaurant={restaurant} handleAddToCart={handleAddToCart}/>
               </Tab.Pane>
             </Tab>
             <Tab eventKey='about' title='About Us'>
-              <Tab.Pane className='d-flex justify-content-center mt-5 overflow-hidden' style={{minHeight: '50vh', maxHeight: '50vh', overflowY: 'auto'}}>
+              <Tab.Pane className='d-flex justify-content-center' style={{overflowY: 'auto', height: '75vh'}}>
                 <AboutUs restaurant={restaurant}/>
               </Tab.Pane>
             </Tab>
             <Tab eventKey='contact' title='Contact'>
-              <Tab.Pane className='d-flex justify-content-center mt-5 overflow-hidden' style={{minHeight: '50vh', maxHeight: '50vh', overflowY: 'auto'}}>
+              <Tab.Pane className='d-flex justify-content-center' style={{overflowY: 'auto', height: '75vh'}}>
               <Contact restaurant={restaurant}/>
               </Tab.Pane>
             </Tab>
             <Tab eventKey='checkout' title='Check Out'>
-              <Tab.Pane className='d-flex justify-content-center mt-5 overflow-hidden' style={{minHeight: '50vh', maxHeight: '50vh', overflowY: 'auto'}}>
+              <Tab.Pane className='d-flex justify-content-center' style={{overflowY: 'auto', height: '75vh'}}>
                 <Elements stripe={stripePromise}>
                   <Checkout restaurant={restaurant} cart={cart} total={total} handleRemoveFromCart={handleRemoveFromCart}/>
                 </Elements>
               </Tab.Pane>
             </Tab>
           </Tabs>
-        </Card.Body>
-      </Card>
+        {/* </Card.Body>
+      </Card> */}
 
-      <Navbar className='d-flex justify-content-center align-items-center mh-20' >
+      <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{borderTop: "1px solid #dee2e6"}}>
         <Navbar.Brand></Navbar.Brand>
         <Nav>
+          <Nav.Link>Yelp</Nav.Link>
+          <Nav.Link>Facebook</Nav.Link>
+          <Nav.Link>Instagram</Nav.Link>
         </Nav>
       </Navbar>
 

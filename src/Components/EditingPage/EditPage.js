@@ -53,7 +53,7 @@ function EditPage() {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  },[item])
+  },[])
 
   const addItem = () => {
     setItem(item => {

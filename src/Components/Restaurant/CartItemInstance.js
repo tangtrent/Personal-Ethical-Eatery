@@ -4,7 +4,7 @@ import { Card, Button } from 'react-bootstrap'
 export default function CartItemInstance( { currentCartItem, handleRemoveFromCart }) {
   console.log(currentCartItem)
   return (
-    <Card>
+    <Card className="mb-1 p-2">
       {currentCartItem.name}
       <br/>
       {/* <Image src={"currentCartItem.itemImgUrl"} /> */}
