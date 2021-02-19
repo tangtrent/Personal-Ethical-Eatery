@@ -29,7 +29,23 @@ export default function Dashboard() {
   }
 
   const handleDelete = (selectedRes) => {
-    firestore.collection('restaurants').doc()
+    firestore.collection('restaurants').doc(selectedRes).delete()
+      .then(() => {
+        getRestaurants()
+      })
+  }
+
+  const getRestaurants = () => {
+    firestore.collection('restaurants').where('owner', '==', currentUser.uid).get()
+      .then(snapshot => {
+        var temp = [];
+        snapshot.forEach(doc => {
+          let currObj = doc.data();
+          currObj.restaurantId = doc.id;
+          temp.push(currObj);
+        })
+        setRestaurants(temp)
+      })
   }
 
   useEffect(() => {
@@ -39,14 +55,7 @@ export default function Dashboard() {
           setUserInfo(doc.data());
         })
         .then(() => {
-          firestore.collection('restaurants').where('owner', '==', currentUser.uid).get()
-          .then(snapshot => {
-            var temp = [];
-            snapshot.forEach(doc => {
-              temp.push(doc.data());
-            })
-            setRestaurants(temp)
-          })
+          getRestaurants()
         })
     } catch(err) {
       console.error(err)
