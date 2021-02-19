@@ -30,7 +30,7 @@ export default function AddMenuItem(props) {
   }
 
   const handleAdd = () => {
-    if (name.length === 0 || price.length === 0 || description.length === 0 || itemType === 0 || itemImgUrl === 0) {
+    if (name.length === 0 || price.length === 0 || description.length === 0 || itemType.length === 0 || itemImgUrl.length === 0) {
       setWarning(true)
     } else {
       setWarning(false)
