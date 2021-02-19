@@ -15,9 +15,7 @@ export default function Restaurant(props) {
 
   const [restaurant, setRestaurant] = useState({menu: [{itemImgUrl: 'https://picsum.photos/200',}], address: {}})
   const [cart, setCart] = useState([])
-  // const [cartObj, setCartObj] = useState({})
   const [total, setTotal] = useState(0)
-
 
   let query = firestore.collection("restaurants").doc(`${props.restaurantId}`);
 
@@ -32,14 +30,12 @@ export default function Restaurant(props) {
   }, [])
 
   function handleAddToCart(item) {
-    console.log('handleAddToCart ran')
     setCart([...cart, item])
-    // setCartObj(cartObj => cartObj[item.name] = item)
     setTotal(total => total + item.price)
+    console.log(`total is: `, total)
   }
 
   function handleRemoveFromCart(item) {
-    console.log('handleRemoveFromCart ran')
     let newCart = [];
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].name !== item.name) {

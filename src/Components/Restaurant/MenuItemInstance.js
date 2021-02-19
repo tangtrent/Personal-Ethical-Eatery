@@ -12,7 +12,7 @@ export default function MenuItemInstance({ currentMenuItem, handleAddToCart }) {
       {currentMenuItem.description}
       <br/>
       ${currentMenuItem.price}
-      <button variant="danger" size="sm" onClick={() => handleAddToCart(currentMenuItem)}>Add to Cart</button>
+      <Button variant="danger" size="sm" onClick={() => handleAddToCart(currentMenuItem)}>Add to Cart</Button>
     </Card>
   )
 }

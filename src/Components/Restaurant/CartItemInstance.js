@@ -12,7 +12,7 @@ export default function CartItemInstance( { currentCartItem, handleRemoveFromCar
       {currentCartItem.description}
       <br/>
       ${currentCartItem.price}
-      <button variant="danger" size="sm" onClick={() => handleRemoveFromCart(currentCartItem)}>Remove Item</button>
+      <Button variant="danger" size="sm" onClick={() => handleRemoveFromCart(currentCartItem)}>Remove Item</Button>
     </Card>
   )
 }
