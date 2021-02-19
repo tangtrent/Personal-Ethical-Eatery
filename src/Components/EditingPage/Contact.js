@@ -11,7 +11,7 @@ export default function Contact(props) {
         <p>{props.item.address.state}</p>
         <p>{props.item.address.zip}</p>
       </Card.Text>
-      <Card.Title style={{position: "absolute", right: 0, top: '50%', paddingRight: "10px", cursor: "pointer"}}>Edit</Card.Title>
+      <Card.Title onClick={props.handleOpen} style={{position: "absolute", right: 0, top: '50%', paddingRight: "10px", cursor: "pointer"}}>Edit</Card.Title>
     </Card>
   )
 }

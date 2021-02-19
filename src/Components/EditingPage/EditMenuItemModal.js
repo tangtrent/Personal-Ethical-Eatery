@@ -31,7 +31,7 @@ export default function EditMenuItem(props) {
   }
 
   const handleSubmit = () => {
-    if (name.length === 0 || price.length === 0 || description.length === 0 || itemType === 0 || itemImgUrl === 0) {
+    if (name.length === 0 || price === null || description.length === 0 || itemType.length === 0 || itemImgUrl.length === 0) {
       setWarning(true)
     } else {
       setWarning(false)
@@ -46,19 +46,6 @@ export default function EditMenuItem(props) {
         console.error('Update Failure')
       })
     }
-  }
-  const handleDelete = () => {
-    var update = props.menu.slice(0, props.index).concat(props.menu.slice(props.index + 1, props.menu.length))
-    console.log(update)
-    query.update({
-      menu: update
-    })
-    .then(() => {
-      props.handleClose()
-    })
-    .catch(() => {
-      console.error('Update Failure')
-    })
   }
 
   return(

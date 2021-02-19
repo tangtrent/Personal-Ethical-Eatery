@@ -8,6 +8,7 @@ export default function AboutUs(props) {
     <Card className='h-100'>
       <Card.Header style={{fontSize: '2rem'}}>About Us</Card.Header>
       <Card.Body>{props.item.aboutUs}</Card.Body>
+      <Card.Title onClick={props.handleOpen} style={{position: "absolute", right: 0, top: '50%', paddingRight: "10px", cursor: "pointer"}}>Edit</Card.Title>
     </Card>
   )
 }
