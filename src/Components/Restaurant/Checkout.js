@@ -34,7 +34,7 @@ export default function Checkout( { cart, total, handleRemoveFromCart } ) {
   return (
     <div className="d-flex flex-column align-items-center">
       <h1>Total: ${total}</h1>
-    <Card className="mt-auto overflow-auto" style={{ width: "400px", border: "0px" }}>
+    <Card className="mt-auto overflow-auto" style={{ border: "0px" }}>
       <Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>
     </Card>
       <div className="mt-2">

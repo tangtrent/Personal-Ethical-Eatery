@@ -56,8 +56,6 @@ export default function Restaurant(props) {
         </Nav>
       </Navbar>
 
-      {/* <Card className='d-flex justify-content-center' style={{height: "60vh"}}>
-        <Card.Body> */}
         <Tabs fill defaultActiveKey='Menu' id='options-tab' style={{fontSize: '1rem', borderBottom: "1px solid #dee2e6"}}>
             <Tab eventKey='Menu' title='View Menu / Order'>
               <Tab.Pane className='d-flex justify-content-center align-items-center overflow-auto mt-auto' style={{height: '75vh'}}>
@@ -82,8 +80,6 @@ export default function Restaurant(props) {
               </Tab.Pane>
             </Tab>
           </Tabs>
-        {/* </Card.Body>
-      </Card> */}
 
       <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{borderTop: "1px solid #dee2e6"}}>
         <Navbar.Brand></Navbar.Brand>
