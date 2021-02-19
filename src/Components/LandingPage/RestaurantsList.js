@@ -7,7 +7,7 @@ export default function RestaurantsList(props) {
   let { restaurants, viewRestaurant } = props;
 
   return (
-    <CardGroup>
+    <CardGroup className="flex-column overflow-auto align-items-center" style={{border: "solid"}}>
       {restaurants.map((eachRestaurant) => {
         return <RestaurantInstance eachRestaurant={eachRestaurant} viewRestaurant={viewRestaurant}/>
       })}

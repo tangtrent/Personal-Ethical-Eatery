@@ -54,17 +54,17 @@ const LandingPage = (props) => {
         </Nav>
       </Navbar>
 
-      <Card style={{height: "65vh", border: "0px"}}>
-        <Card.Body className='d-flex justify-content-center'>
+      <Card style={{height: "65vh", border: "1px solid"}}>
+        <Card.Body className='d-flex justify-content-center '>
           <Form >
             <h1>Where are we eating today?</h1>
             <Form.Group controlId="formRestaurantSearch" className="d-flex">
               <Form.Control type="text" placeholder="Search Restaurants..." className="mr-sm-2" onChange={(event) => {setSearch(event.target.value)}}/>
-              <Button variant="outline-info" onClick={submitSearch}>Search</Button>
+              <Button className="btn-danger" onClick={submitSearch}>Search</Button>
             </Form.Group>
           </Form>
         </Card.Body>
-        <RestaurantsList restaurants={restaurants} viewRestaurant={viewRestaurant}/>
+        <RestaurantsList restaurants={restaurants} viewRestaurant={viewRestaurant} />
       </Card>
 
       <Navbar className='d-flex justify-content-center align-items-center' style={{minHeight: "100px"}}>
