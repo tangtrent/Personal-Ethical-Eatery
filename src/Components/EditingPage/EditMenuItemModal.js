@@ -31,7 +31,7 @@ export default function EditMenuItem(props) {
   }
 
   const handleSubmit = () => {
-    if (name.length === 0 || price.length === 0 || description.length === 0 || itemType === 0 || itemImgUrl === 0) {
+    if (name.length === 0 || price === null || description.length === 0 || itemType.length === 0 || itemImgUrl.length === 0) {
       setWarning(true)
     } else {
       setWarning(false)
@@ -47,19 +47,6 @@ export default function EditMenuItem(props) {
       })
     }
   }
-  const handleDelete = () => {
-    var update = props.menu.slice(0, props.index).concat(props.menu.slice(props.index + 1, props.menu.length))
-    console.log(update)
-    query.update({
-      menu: update
-    })
-    .then(() => {
-      props.handleClose()
-    })
-    .catch(() => {
-      console.error('Update Failure')
-    })
-  }
 
   return(
     <Modal show={props.show} onHide={() => {
@@ -67,14 +54,14 @@ export default function EditMenuItem(props) {
       props.handleClose()
     }}>
       <Modal.Header closeButton>
-        <input placeholder='Name' onChange={handleName}/>
-        <input placeholder='Price' type='number' onChange={handlePrice}/>
+        <input placeholder='name' onChange={handleName}/>
+        <input placeholder='price' type='number' onChange={handlePrice}/>
       </Modal.Header>
 
       <Modal.Body>
-        <input placeholder='Item Image' onChange={handleItemImgUrl}/>
+        <input placeholder='Item Image Url' onChange={handleItemImgUrl}/>
         <input placeholder='Item Type' onChange={handleItemType}/>
-        <textarea className='w-100 h-100' placeholder='Item Description' onChange={handleDescription}/>
+        <textarea className='w-100 h-100' placeholder='Description' onChange={handleDescription}/>
         {warning && <Badge variant='secondary'>Missing Fields</Badge>}
       </Modal.Body>
 
