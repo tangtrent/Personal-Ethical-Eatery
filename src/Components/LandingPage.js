@@ -1,14 +1,29 @@
 import React, { Component, useState} from 'react';
 import { Container, Navbar, Nav, Form, Button, Card, CardGroup } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { firestore } from '../firebase.js';
 import RestaurantsList from './LandingPage/RestaurantsList.js'
+import { useAuth } from '../Context/AuthContext';
 
 const LandingPage = (props) => {
 
   let { viewRestaurant } = props;
   const [search, setSearch] = useState('');
+  const [error, setError] = useState('');
   const [restaurants, setRestaurants] = useState([]);
+  const { currentUser, logout } = useAuth()
+  const history = useHistory()
+
+  async function handleLogout() {
+    setError('')
+
+    try {
+      await logout()
+      history.push('/')
+    } catch {
+      setError('Failed to log out')
+    }
+  }
 
   const submitSearch = () => {
     firestore.collection('restaurants').where('restaurantType', 'array-contains', `${search}`).get()
@@ -49,8 +64,15 @@ const LandingPage = (props) => {
         <Nav>
           {/* <Link to="LogIn">Log In |</Link>
           <Link to="SignUp">| Sign Up</Link> */}
-          <Nav.Link href="LogIn">Log In</Nav.Link>
-          <Nav.Link href="SignUp">Sign Up</Nav.Link>
+          {currentUser ?
+          <>
+            <Nav.Link href='dashboard'>Profile</Nav.Link>
+            <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
+          </> :
+          <>
+            <Nav.Link href="LogIn">Log In</Nav.Link>
+            <Nav.Link href="SignUp">Sign Up</Nav.Link>
+          </>}
         </Nav>
       </Navbar>
 

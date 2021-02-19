@@ -66,34 +66,40 @@ import ModalPage from '../CreateRestaurant/ModalPage'
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
-      <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px"}}>
+      <Navbar className='d-flex justify-content-end mh-20' style={{minHeight: "100px"}}>
+        <Nav className='w-100' style={{fontSize: '1.25rem'}}>
+          <Nav.Link href='/'>Home</Nav.Link>
+          <Nav.Link style={{float: 'right'}} onClick={handleLogout}>Log Out</Nav.Link>
+        </Nav>
       </Navbar>
 
-      <Card style={{height: '65vh'}}>
+      <Card style={{height: '600px'}}>
         <Card.Body>
 
           <Jumbotron style={{minHeight: '100%'}}>
-            <Navbar className='d-flex justify-content-center '>
+            {/* <Navbar className='d-flex justify-content-center '>
               <div className='w-100' style={{fontSize: '1.25rem'}}>
                 <Nav.Link style={{float: 'left', color: 'black'}} variant="link" href='/'>Home</Nav.Link>
                 <Nav.Link style={{float: 'right', color: 'black'}} variant="link" onClick={handleLogout}>Log Out</Nav.Link>
               </div>
-            </Navbar>
-            <h2 className='d-flex justify-content-center'>Welcome, {userInfo.firstName}!</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <p className='mt-3 d-flex justify-content-center'>You can create a new restaurant, or edit an existing one:</p>
-            <div className='d-flex justify-content-center'>
-              <Button href='/ModalPage' className='m-5' variant="danger" size='lg' style={{minHeight: '100px', minWidth: '200px', maxWidth: '200px', paddingTop: '3.6%'}}>Create restaurant</Button>
-              <Button className='m-5' variant="danger" size='lg' style={{minHeight: '100px', minWidth: '200px', maxWidth: '200px'}} onClick={handleShow}>Edit restaurant</Button>
+            </Navbar> */}
+            <div style={{marginTop: '100px'}}>
+              <h2 className='d-flex justify-content-center'>Welcome, {userInfo.firstName}!</h2>
+              {error && <Alert variant="danger">{error}</Alert>}
+              <p className='mt-3 d-flex justify-content-center'>You can create a new restaurant, or edit an existing one:</p>
+              <div className='d-flex justify-content-center'>
+                <Button href='/ModalPage' className='m-5' variant="danger" size='lg' style={{minHeight: '100px', minWidth: '200px', maxWidth: '200px', paddingTop: '3.6%'}}>Create restaurant</Button>
+                <Button className='m-5' variant="danger" size='lg' style={{minHeight: '100px', minWidth: '200px', maxWidth: '200px'}} onClick={handleShow}>Edit restaurant</Button>
+              </div>
+              <Modal show={show} onHide={handleClose} style={{minHeight: '500px'}}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Select restaurant:</Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={{maxHeight: '700px', overflowY: 'auto'}}>
+                  <DashboardRestaurants restaurants={restaurants} handleDelete={handleDelete} editRestaurantId={editRestaurantId}/>
+                </Modal.Body>
+              </Modal>
             </div>
-            <Modal show={show} onHide={handleClose} style={{minHeight: '500px'}}>
-              <Modal.Header closeButton>
-                <Modal.Title>Click edit or delete:</Modal.Title>
-              </Modal.Header>
-              <Modal.Body style={{maxHeight: '700px', overflowY: 'auto'}}>
-                <DashboardRestaurants restaurants={restaurants} handleDelete={handleDelete} editRestaurantId={editRestaurantId}/>
-              </Modal.Body>
-            </Modal>
           </Jumbotron>
 
         </Card.Body>

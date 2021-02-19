@@ -85,7 +85,8 @@ export default function ModalPage({ editRestaurantId }) {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     firestore.collection('restaurants').add({
       name: name,
       aboutUs: about,
