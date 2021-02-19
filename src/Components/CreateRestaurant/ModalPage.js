@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useHistory } from "react-router-dom";
+
 import { Container, Modal, Form, InputGroup, Col, Button, Row, ListGroup } from 'react-bootstrap';
 import { useAuth } from '../../Context/AuthContext';
 import { firestore } from '../../firebase.js';
@@ -17,6 +19,7 @@ export default function ModalPage() {
   const [zip, setZip] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const history = useHistory();
   let aboutRef = useRef();
 
   const handleShow = () => setShowFirst(true);
@@ -75,9 +78,7 @@ export default function ModalPage() {
       owner: currentUser.uid,
     })
     .then(doc => {
-      firestore.collection('users').doc(currentUser.uid).update({
-        restaurants: [...userInfo.restaurants, doc.id]
-      })
+      history.push('editing')
     })
   }
 
@@ -168,8 +169,8 @@ export default function ModalPage() {
                 </ListGroup>
               </Form.Row>
             </Col>
-            <div className='mt-5'>
-              <Button className='m-auto'variant='danger' style={{display: 'block', height: '7vh', width: '20vh', paddingTop: '3%'}} onClick={handleSubmit}>Finish</Button>
+            <div className='mt-5' onClick={handleSubmit}>
+              <Button className='m-auto' variant='danger' style={{display: 'block', height: '7vh', width: '20vh', paddingTop: '3%'}} >Finish</Button>
             </div>
           </Form.Group>
         </Form>
