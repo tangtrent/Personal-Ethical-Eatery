@@ -54,7 +54,7 @@ const LandingPage = (props) => {
         </Nav>
       </Navbar>
 
-      <Card style={{height: "65vh", border: "1px solid"}}>
+      <Card style={{height: "65vh", border: "0px solid"}}>
         <Card.Body className='d-flex justify-content-center '>
           <Form >
             <h1>Where are we eating today?</h1>

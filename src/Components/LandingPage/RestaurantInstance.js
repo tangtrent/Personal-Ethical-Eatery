@@ -7,15 +7,15 @@ export default function RestaurantInstance(props) {
   let { eachRestaurant, viewRestaurant } = props;
   let { restaurantImgUrl, name, aboutUs, restaurantType, restaurantId } = eachRestaurant;
   return (
-      <Card className="w-100" style={{maxHeight: "75vh"}}>
-        <Card.Img src={`${restaurantImgUrl}`} className="h-75"></Card.Img>
-        {/* <Card.Header>{restaurantType.map(type => {return type})}</Card.Header> */}
-        <Card.Title className="h-15">{name}</Card.Title>
-        <Card.Text className="h-10">{aboutUs}</Card.Text>
-        <Card.Footer>
-          <Link to='/restaurant' onClick={() => {viewRestaurant(restaurantId)}}>View Restaurant</Link>
-        </Card.Footer>
-      </Card>
+    <Card className="w-50" style={{}}>
+      <Card.Img src={`${restaurantImgUrl}`} className="w-100"></Card.Img>
+      <Card.Header>{restaurantType.map(type => {return type})}</Card.Header>
+      <Card.Title className="">{name}</Card.Title>
+      <Card.Text className="">{aboutUs}</Card.Text>
+      <Card.Footer>
+        <Link to='/restaurant' onClick={() => {viewRestaurant(restaurantId)}}>View Restaurant</Link>
+      </Card.Footer>
+    </Card>
   )
 
 }
