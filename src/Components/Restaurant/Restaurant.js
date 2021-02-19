@@ -12,10 +12,11 @@ import Checkout from './Checkout'
 console.log(process.env);
 const stripePromise = loadStripe('pk_test_51ILuS0Fp1MZdStAzmZuANmYRFR8ahWoReeciJKWQnCdBppxfNJ0SJSH5TYF0Aa0rksYtzRjt8SpX98EepSPl4B5w00H8CqOYdu')
 
-export default function Restaurant() {
+export default function Restaurant(props) {
+
   const [restaurant, setRestaurant] = useState({menu: [{itemImgUrl: 'https://picsum.photos/200',}], address: {}})
 
-  let query = firestore.collection("restaurants").doc("jg4VGdICBjpXDFIzj4We");
+  let query = firestore.collection("restaurants").doc(`${props.restaurantId}`);
 
   useEffect(() => {
     try {
