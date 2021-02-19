@@ -6,7 +6,7 @@ import { firestore } from '../../firebase.js';
 import DashboardRestaurants from './DashboardRestaurants';
 import ModalPage from '../CreateRestaurant/ModalPage'
 
-export default function Dashboard() {
+  const Dashboard = ({ editRestaurantId }) => {
   const [error, setError] = useState('')
   const [userInfo, setUserInfo] = useState({restaurants: [{name: 'haha'}]})
   const [restaurants, setRestaurants] = useState([]);
@@ -14,7 +14,7 @@ export default function Dashboard() {
   const { currentUser, logout } = useAuth()
   const history = useHistory()
 
-  const handleShow = () => setShow(true);
+  const handleShow = () => { setShow(true); getRestaurants()}
   const handleClose = () => setShow(false);
 
   async function handleLogout() {
@@ -91,7 +91,7 @@ export default function Dashboard() {
                 <Modal.Title>Click edit or delete:</Modal.Title>
               </Modal.Header>
               <Modal.Body style={{maxHeight: '700px', overflowY: 'auto'}}>
-                <DashboardRestaurants restaurants={restaurants} handleDelete={handleDelete}/>
+                <DashboardRestaurants restaurants={restaurants} handleDelete={handleDelete} editRestaurantId={editRestaurantId}/>
               </Modal.Body>
             </Modal>
           </Jumbotron>
@@ -105,3 +105,5 @@ export default function Dashboard() {
     </Container>
   )
 }
+
+export default Dashboard;

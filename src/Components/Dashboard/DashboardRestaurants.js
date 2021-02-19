@@ -1,7 +1,7 @@
 import React from 'react';
 import RestaurantItem from './RestaurantItem';
 
-export default function DashboardRestaurants({ restaurants, handleDelete }) {
+export default function DashboardRestaurants({ restaurants, handleDelete, editRestaurantId }) {
   if (!restaurants) {
     return null;
   } else if (restaurants.length === 0) {
@@ -12,7 +12,7 @@ export default function DashboardRestaurants({ restaurants, handleDelete }) {
     return (
       <>
         {restaurants.map((restaurant, id) => {
-          return <RestaurantItem style={{min: '700px', overflowY: 'auto'}} key={restaurant.restaurantId} restaurant={restaurant} handleDelete={handleDelete}/>
+          return <RestaurantItem style={{min: '700px', overflowY: 'auto'}} key={restaurant.restaurantId} restaurant={restaurant} handleDelete={handleDelete} editRestaurantId={editRestaurantId}/>
         })}
       </>
     )
