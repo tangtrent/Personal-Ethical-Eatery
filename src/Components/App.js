@@ -11,6 +11,7 @@ import LogIn from './SignIn/LogIn';
 import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './SignIn/PrivateRoute';
 import ModalPage from './CreateRestaurant/ModalPage';
+import EditingPage from './EditingPage/EditPage'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/restaurant" render={() => {return <Restaurant restaurantId={restaurantId}/>}} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path='/ModalPage' component={ModalPage} />
+            <PrivateRoute exact path='/editing' component={EditingPage} />
           </Switch>
         </AuthProvider>
         </Router>

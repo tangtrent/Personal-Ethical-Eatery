@@ -5,7 +5,7 @@ import Contact from './Contact'
 import AboutUs from './AboutUs'
 import EditMenuItemModal from './EditMenuItemModal'
 import AddMenuItemModal from './AddMenuItemModal'
-import { firestore } from './../firebase'
+import { firestore } from '../../firebase'
 
 
 function EditPage() {

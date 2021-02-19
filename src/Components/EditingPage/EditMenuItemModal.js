@@ -1,6 +1,6 @@
 import { Container, Row, Navbar, Nav, Form, FormControl, Button, Card, Figure, Modal, Badge } from 'react-bootstrap'
 import { useState } from 'react'
-import { firestore } from './../firebase'
+import { firestore } from '../../firebase'
 
 export default function EditMenuItem(props) {
   const [name, setName] = useState('')
