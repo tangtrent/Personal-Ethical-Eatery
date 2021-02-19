@@ -11,7 +11,23 @@ const LandingPage = (props) => {
   const [restaurants, setRestaurants] = useState([]);
 
   const submitSearch = () => {
-    firestore.collection('restaurants').where('name', '==', `${search}`).get()
+    firestore.collection('restaurants').where('restaurantType', 'array-contains', `${search}`).get()
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs.map((eachDoc) => {
+          let eachRestaurantDoc = eachDoc.data();
+          eachRestaurantDoc.restaurantId = eachDoc.id;
+          return eachRestaurantDoc;
+        });
+        console.log(data)
+        setRestaurants(data);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const onTypeSearch = () => {
+    firestore.collection('restaurants').where('searchTerms', 'array-contains', `${search}`).get()
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map((eachDoc) => {
           let eachRestaurantDoc = eachDoc.data();
