@@ -17,12 +17,8 @@ function EditPage({ editId }) {
 
   let query = firestore.collection("restaurants").doc(`${editId}`);
 
-  const showAddModal = () => {
-    setAddModal(!addModal)
-  }
-  const showEditModal = () => {
-    setEditModal(!editModal)
-  }
+  const showAddModal = () => { setAddModal(!addModal) }
+  const showEditModal = () => { setEditModal(!editModal) }
   const handleSelection = (selected) => {
     setSelectedEdit(selected)
     showEditModal()
@@ -86,8 +82,8 @@ function EditPage({ editId }) {
           <Nav.Link>Facebook</Nav.Link>
         </Nav>
       </Navbar>
-      <EditMenuItemModal item={item.menu[selectedEdit]} index={selectedEdit} menu={item.menu} show={editModal} handleClose={showEditModal} />
-      <AddMenuItemModal show={addModal} handleClose={showAddModal} menu={item.menu}/>
+      <EditMenuItemModal item={item.menu[selectedEdit]} index={selectedEdit} menu={item.menu} show={editModal} handleClose={showEditModal} restaurantId={editId}/>
+      <AddMenuItemModal show={addModal} handleClose={showAddModal} menu={item.menu} restaurantId={editId}/>
     </Container>
   );
 }
