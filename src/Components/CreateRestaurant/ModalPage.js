@@ -5,7 +5,7 @@ import { Container, Modal, Form, InputGroup, Col, Button, Row, ListGroup } from 
 import { useAuth } from '../../Context/AuthContext';
 import { firestore } from '../../firebase.js';
 
-export default function ModalPage() {
+export default function ModalPage({ editRestaurantId }) {
   const { currentUser } = useAuth();
   const [userInfo, setUserInfo] = useState()
   const [showFirst, setShowFirst] = useState(false)
@@ -78,6 +78,7 @@ export default function ModalPage() {
       owner: currentUser.uid,
     })
     .then(doc => {
+      editRestaurantId(doc.id);
       history.push('editing')
     })
   }
@@ -170,7 +171,7 @@ export default function ModalPage() {
               </Form.Row>
             </Col>
             <div className='mt-5' onClick={handleSubmit}>
-              <Button className='m-auto' variant='danger' style={{display: 'block', height: '7vh', width: '20vh', paddingTop: '3%'}} >Finish</Button>
+              <Button className='m-auto' variant='danger' style={{display: 'block', height: '7vh', width: '20vh', paddingTop: '3%'}}>Finish</Button>
             </div>
           </Form.Group>
         </Form>
