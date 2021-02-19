@@ -9,7 +9,7 @@ export default function RestaurantInstance(props) {
   return (
     <Card className="w-50" style={{}}>
       <Card.Img src={`${restaurantImgUrl}`} className="w-100"></Card.Img>
-      <Card.Header>{restaurantType.map(type => {return type})}</Card.Header>
+      {/* <Card.Header>{restaurantType.map(type => {return type})}</Card.Header> */}
       <Card.Title className="">{name}</Card.Title>
       <Card.Text className="">{aboutUs}</Card.Text>
       <Card.Footer>
