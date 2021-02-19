@@ -9,6 +9,7 @@ import ModalPage from '../CreateRestaurant/ModalPage'
 export default function Dashboard() {
   const [error, setError] = useState('')
   const [userInfo, setUserInfo] = useState({restaurants: [{name: 'haha'}]})
+  const [restaurants, setRestaurants] = useState([]);
   const [show, setShow] = useState(false)
   const { currentUser, logout } = useAuth()
   const history = useHistory()
@@ -27,25 +28,8 @@ export default function Dashboard() {
     }
   }
 
-  function onCreate() {
-    try {
-       firestore.collection('restaurants').add({
-        name: '',
-        aboutUs: '',
-        address: {streetNumber: '',
-                  state: '',
-                  city: '',
-                  zip: ''},
-        menu: [],
-        phone: '',
-        email: '',
-        restaurauntType: '',
-        restaurantImgUrl: '',
-        owner: currentUser.uid,
-      })
-    } catch(err) {
-      console.error(err);
-    }
+  const handleDelete = (selectedRes) => {
+    firestore.collection('restaurants').doc()
   }
 
   useEffect(() => {
@@ -54,12 +38,22 @@ export default function Dashboard() {
         .then(doc => {
           setUserInfo(doc.data());
         })
+        .then(() => {
+          firestore.collection('restaurants').where('owner', '==', currentUser.uid).get()
+          .then(snapshot => {
+            var temp = [];
+            snapshot.forEach(doc => {
+              temp.push(doc.data());
+            })
+            setRestaurants(temp)
+          })
+        })
     } catch(err) {
       console.error(err)
     }
   }, [])
 
-  console.log(userInfo)
+  console.log(restaurants)
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
@@ -80,15 +74,15 @@ export default function Dashboard() {
             {error && <Alert variant="danger">{error}</Alert>}
             <p className='mt-3 d-flex justify-content-center'>You can create a new restaurant, or edit an existing one:</p>
             <div className='d-flex justify-content-center'>
-              <Button className='m-5' variant="danger" size='lg' style={{minHeight: '70px', minWidth: '200px', maxWidth: '200px'}}><Link to='ModalPage' style={{textDecoration: 'none', color: 'white'}}>Create restaurant</Link></Button>
+              <Button href='/ModalPage' className='m-5' variant="danger" size='lg' style={{minHeight: '100px', minWidth: '200px', maxWidth: '200px', paddingTop: '3.6%'}}>Create restaurant</Button>
               <Button className='m-5' variant="danger" size='lg' style={{minHeight: '100px', minWidth: '200px', maxWidth: '200px'}} onClick={handleShow}>Edit restaurant</Button>
             </div>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} style={{minHeight: '500px'}}>
               <Modal.Header closeButton>
                 <Modal.Title>Click edit or delete:</Modal.Title>
               </Modal.Header>
-              <Modal.Body style={{maxHeight: '100vh', overflowY: 'auto'}}>
-                <DashboardRestaurants userInfo={userInfo} />
+              <Modal.Body style={{maxHeight: '700px', overflowY: 'auto'}}>
+                <DashboardRestaurants restaurants={restaurants} handleDelete={handleDelete}/>
               </Modal.Body>
             </Modal>
           </Jumbotron>

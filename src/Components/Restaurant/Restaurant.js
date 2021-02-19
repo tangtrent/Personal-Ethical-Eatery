@@ -11,19 +11,15 @@ import Checkout from './Checkout'
 
 const stripePromise = loadStripe('pk_test_51ILuS0Fp1MZdStAzmZuANmYRFR8ahWoReeciJKWQnCdBppxfNJ0SJSH5TYF0Aa0rksYtzRjt8SpX98EepSPl4B5w00H8CqOYdu')
 
-const menuItemOne = {description: "Pizza covered in pepperoni", itemImgUrl: "https://picsum.photos/200", itemType: "entree", name: "Peperoni Pizza", price: 300}
+export default function Restaurant(props) {
 
-const menuItemTwo = {description: "Canadian bacon and Pinneapple", itemImgUrl: "https://picsum.photos/200", itemType: "entree", name: "Hawaiian Pizza", price: 200}
-
-
-export default function Restaurant() {
   const [restaurant, setRestaurant] = useState({menu: [{itemImgUrl: 'https://picsum.photos/200',}], address: {}})
   const [cart, setCart] = useState([])
   // const [cartObj, setCartObj] = useState({})
   const [total, setTotal] = useState(0)
 
 
-  let query = firestore.collection("restaurants").doc("jg4VGdICBjpXDFIzj4We");
+  let query = firestore.collection("restaurants").doc(`${props.restaurantId}`);
 
   useEffect(() => {
     try {
