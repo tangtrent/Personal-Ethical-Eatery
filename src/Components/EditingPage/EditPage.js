@@ -88,9 +88,7 @@ function EditPage({ editId }) {
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
       <Navbar className='d-flex align-items-center mh-20' style={{minHeight: "20px"}}>
         <Nav variant="pills">
-          <Nav.Link href='/dashboard'>
-            Back
-          </Nav.Link>
+          <Nav.Link href='/dashboard'>Back</Nav.Link>
           <Nav.Link href="/">Home</Nav.Link>
         </Nav>
       </Navbar>
