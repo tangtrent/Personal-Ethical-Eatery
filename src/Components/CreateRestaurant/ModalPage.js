@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from "react-router-dom";
 
-import { Container, Modal, Form, InputGroup, Col, Button, Row, ListGroup } from 'react-bootstrap';
+import { Container, Modal, Form, InputGroup, Col, Button, Row, ListGroup, ProgressBar } from 'react-bootstrap';
 import { useAuth } from '../../Context/AuthContext';
 import { firestore, storage } from '../../firebase.js';
 
@@ -21,6 +21,7 @@ export default function ModalPage({ editRestaurantId }) {
   const [email, setEmail] = useState('');
   const [about, setAbout] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+  const [progress, setProgress] = useState(0)
   const history = useHistory();
 
   const handleShow = () => { setShowFirst(true); setShowNext(false)}
@@ -99,9 +100,8 @@ export default function ModalPage({ editRestaurantId }) {
       phone: phone,
       email: email,
       restaurantType: foodTypes,
-      restaurantImgUrl: '',
+      restaurantImgUrl: selectedFile,
       owner: currentUser.uid,
-      mainImg: selectedFile
     })
     .then(doc => {
       editRestaurantId(doc.id);
@@ -115,8 +115,16 @@ export default function ModalPage({ editRestaurantId }) {
       contentType: file.type
     };
     storage.ref().child(file.name).put(file, metadata)
-      .on('state_changed', (snapshot) => {
-        console.log(snapshot)
+      .on('state_changed' , (snapshot => {
+        setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      }), (err) => {
+        console.error(err)
+      }, () => {
+        storage.ref().child(file.name).getDownloadURL()
+        .then(url => {
+          console.log(url)
+          setSelectedFile(url);
+        })
       })
 
   }
@@ -135,10 +143,9 @@ export default function ModalPage({ editRestaurantId }) {
   console.log(selectedFile)
   return (
     <>
-      <Modal show={showFirst} onHide={() => {}}>
+      <Modal centered show={showFirst} onHide={() => {}}>
         <Modal.Header>
           <Modal.Title>Tell us about your restaurant</Modal.Title>
-          <Button href='/dashboard' variant='danger' size='sm'>Go back</Button>
         </Modal.Header>
         <Form>
           <Form.Group className='mt-3'>
@@ -168,18 +175,18 @@ export default function ModalPage({ editRestaurantId }) {
               <Form.Label className='mt-2'>Email</Form.Label>
               <Form.Control type='email' title='Email' placeholder='Enter email' onChange={handleChange} value={email}></Form.Control>
             </Col>
-            <div className='mt-5'>
-              <Button className='m-auto' variant='danger' style={{display: 'block', height: '7vh', width: '20vh'}} onClick={handleNext}>Next</Button>
+            <div className='d-flex justify-content-center mt-5'>
+              <Button href='/dashboard' className='mr-3' variant='danger' size='lg'> Back </Button>
+              <Button variant='danger' size='lg' onClick={handleNext}> Next </Button>
             </div>
           </Form.Group>
         </Form>
       </Modal>
 
 
-      <Modal show={showNext} onHide={() => {}}>
+      <Modal centered show={showNext} onHide={() => {}}>
         <Modal.Header>
           <Modal.Title>Tell us more</Modal.Title>
-          <Button variant='danger' size='sm' onClick={handleShow}>Go back</Button>
         </Modal.Header>
         <Form>
           <Form.Group className='mt-3'>
@@ -207,12 +214,15 @@ export default function ModalPage({ editRestaurantId }) {
                   })}
                 </ListGroup>
               </Form.Row>
-              <Form.Group onSubmit={() => handleFile()}>
-                <input type='file' onChange={handleFile}></input>
+              <Form.Group className='mt-3' onSubmit={() => handleFile()}>
+                <Form.Label>Add a main page image</Form.Label>
+                <Form.File.Input onChange={handleFile}></Form.File.Input>
+                <ProgressBar now={progress} className='mt-2'/>
               </Form.Group>
             </Col>
-            <div className='mt-5' onClick={handleSubmit}>
-              <Button className='m-auto' variant='danger' style={{display: 'block', height: '7vh', width: '20vh', paddingTop: '3%'}}>Finish</Button>
+            <div className='d-flex justify-content-center mt-5'>
+              <Button className='mr-3' variant='danger' size='lg' onClick={handleShow}> Back </Button>
+              <Button variant='danger' size='lg' onClick={handleSubmit}> Done </Button>
             </div>
           </Form.Group>
         </Form>

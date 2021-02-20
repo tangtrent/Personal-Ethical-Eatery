@@ -35,7 +35,7 @@ export default function EditMenuItem(props) {
       setWarning(true)
     } else {
       setWarning(false)
-      props.menu[props.index] = { name, price, description, itemType, itemImgUrl }
+      props.menu[props.index] = { name, price, description, itemImgUrl }
       query.update({
         menu: props.menu
       })
@@ -55,6 +55,7 @@ export default function EditMenuItem(props) {
       props.handleClose()
     }}>
       <Modal.Header closeButton>
+        {warning && <Badge variant='secondary'>Missing Fields</Badge>}
       </Modal.Header>
 
       <Modal.Body className='d-flex'>
@@ -68,7 +69,6 @@ export default function EditMenuItem(props) {
           </div>
           <textarea className='w-100 h-100' placeholder='Description' onChange={handleDescription}/>
         </div>
-        {warning && <Badge variant='secondary'>Missing Fields</Badge>}
       </Modal.Body>
 
       <Modal.Footer>
