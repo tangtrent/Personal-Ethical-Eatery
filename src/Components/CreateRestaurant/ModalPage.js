@@ -98,13 +98,10 @@ export default function ModalPage({ editRestaurantId }) {
       menu: [],
       phone: phone,
       email: email,
-      restaurauntType: foodTypes,
+      restaurantType: foodTypes,
       restaurantImgUrl: '',
       owner: currentUser.uid,
       mainImg: selectedFile
-    })
-    .then(() => {
-
     })
     .then(doc => {
       editRestaurantId(doc.id);

@@ -66,10 +66,10 @@ import ModalPage from '../CreateRestaurant/ModalPage'
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
-      <Navbar className='d-flex justify-content-end mh-20' style={{minHeight: "100px"}}>
-        <Nav className='w-100' style={{fontSize: '1.25rem'}}>
+      <Navbar className='mh-20' style={{minHeight: "100px"}}>
+        <Nav className='d-flex justify-content-end w-100' style={{fontSize: '1.25rem'}}>
           <Nav.Link href='/'>Home</Nav.Link>
-          <Nav.Link style={{float: 'right'}} onClick={handleLogout}>Log Out</Nav.Link>
+          <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
         </Nav>
       </Navbar>
 

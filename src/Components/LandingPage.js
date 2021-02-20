@@ -34,6 +34,7 @@ const LandingPage = (props) => {
           eachRestaurantDoc.restaurantId = eachDoc.id;
           return eachRestaurantDoc;
         });
+        console.log(data)
         if (data.length === 0) {
           setShowModal(true);
         }

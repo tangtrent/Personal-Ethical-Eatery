@@ -50,8 +50,8 @@ export default function Restaurant(props) {
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
-      <Navbar className='d-flex align-items-center mh-20' style={{minHeight: "20px"}}>
-        <Nav variant="pills">
+      <Navbar className='d-flex  mh-20' style={{minHeight: "20px"}}>
+        <Nav className='d-flex justify-content-end w-100'>
           <Nav.Link href="/">Home</Nav.Link>
         </Nav>
       </Navbar>
