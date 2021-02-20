@@ -2,16 +2,13 @@ import { Container, Row, Navbar, Nav, Form, FormControl, Button, Card, Figure } 
 
 export default function Contact(props) {
   return(
-    <Card className='h-100'>
-      <Card.Header className='align-text-center' style={{fontSize: '2rem'}}>Contact Info</Card.Header>
-      <Card.Text>
-        <h3>Address:</h3>
-        <p>{props.item.address.streetNumber}</p>
-        <p>{props.item.address.city}</p>
-        <p>{props.item.address.state}</p>
-        <p>{props.item.address.zip}</p>
-      </Card.Text>
-      <Card.Title onClick={props.handleOpen} style={{position: "absolute", right: 0, top: '50%', paddingRight: "10px", cursor: "pointer"}}>Edit</Card.Title>
+    <Card className="mx-auto text-center" style={{ width: "400px", border: "0px" }}>
+      {props.item.address.streetNumber}
+      <br/>
+      {props.item.address.city},{' '}
+      {props.item.address.state},{' '}
+      {props.item.address.zip}
+      <Button variant="primary" size="sm" className="mt-5" onClick={props.handleOpen}>Edit</Button>
     </Card>
   )
 }
