@@ -1,5 +1,5 @@
 import React, { Component, useState} from 'react';
-import { Container, Navbar, Nav, Form, Button, Card, CardGroup } from 'react-bootstrap'
+import { Container, Navbar, Nav, Form, Button, Card, CardGroup, Modal } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom';
 import { firestore } from '../firebase.js';
 import RestaurantsList from './LandingPage/RestaurantsList.js'
@@ -13,6 +13,7 @@ const LandingPage = (props) => {
   const [restaurants, setRestaurants] = useState([]);
   const { currentUser, logout } = useAuth()
   const history = useHistory()
+  const [showModal, setShowModal] = useState(false);
 
   async function handleLogout() {
     setError('')
@@ -33,7 +34,9 @@ const LandingPage = (props) => {
           eachRestaurantDoc.restaurantId = eachDoc.id;
           return eachRestaurantDoc;
         });
-        console.log(data)
+        if (data.length === 0) {
+          setShowModal(true);
+        }
         setRestaurants(data);
       })
       .catch((err) => {
@@ -41,21 +44,21 @@ const LandingPage = (props) => {
       })
   }
 
-  const onTypeSearch = () => {
-    firestore.collection('restaurants').where('searchTerms', 'array-contains', `${search}`).get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map((eachDoc) => {
-          let eachRestaurantDoc = eachDoc.data();
-          eachRestaurantDoc.restaurantId = eachDoc.id;
-          return eachRestaurantDoc;
-        });
-        console.log(data)
-        setRestaurants(data);
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+  // const onTypeSearch = () => {
+  //   firestore.collection('restaurants').where('searchTerms', 'array-contains', `${search}`).get()
+  //     .then((querySnapshot) => {
+  //       const data = querySnapshot.docs.map((eachDoc) => {
+  //         let eachRestaurantDoc = eachDoc.data();
+  //         eachRestaurantDoc.restaurantId = eachDoc.id;
+  //         return eachRestaurantDoc;
+  //       });
+  //       console.log(data)
+  //       setRestaurants(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
@@ -78,7 +81,7 @@ const LandingPage = (props) => {
 
       <Card style={{height: "65vh", border: "0px solid"}}>
         <Card.Body className='d-flex justify-content-center '>
-          <Form >
+          <Form onSubmit={(event) => {event.preventDefault(); submitSearch()}}>
             <h1>Where are we eating today?</h1>
             <Form.Group controlId="formRestaurantSearch" className="d-flex">
               <Form.Control type="text" placeholder="Search Restaurants..." className="mr-sm-2" onChange={(event) => {setSearch(event.target.value)}}/>
@@ -86,6 +89,15 @@ const LandingPage = (props) => {
             </Form.Group>
           </Form>
         </Card.Body>
+        <Modal show={showModal} onHide={() => setShowModal(false)} size='sm' centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Invalid Search</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Please Try Again</Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => setShowModal(false)} className="btn-danger">Close</Button>
+          </Modal.Footer>
+        </Modal>
         <RestaurantsList restaurants={restaurants} viewRestaurant={viewRestaurant} />
       </Card>
 
