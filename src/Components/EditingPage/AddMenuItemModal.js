@@ -48,19 +48,24 @@ export default function AddMenuItem(props) {
   }
 
   return(
-    <Modal show={props.show} onHide={() => {
+    <Modal size='lg' show={props.show} onHide={() => {
       setWarning(false)
       props.handleClose()
     }}>
       <Modal.Header closeButton>
-        <input placeholder='Name' onChange={handleName}/>
-        <input placeholder='Price' type='number' onChange={handlePrice}/>
       </Modal.Header>
 
-      <Modal.Body>
-        <input placeholder='Image Link' onChange={handleItemImgUrl}/>
-        <input placeholder='Item Type' onChange={handleItemType}/>
-        <textarea className='w-100 h-100' placeholder='Description' onChange={handleDescription}/>
+      <Modal.Body className='d-flex'>
+      <div className='w-50'>
+          <input placeholder='Item Image Url' onChange={handleItemImgUrl}/>
+        </div>
+        <div className='d-flex flex-column'>
+          <div>
+            <input placeholder='name' onChange={handleName}/>
+            <input placeholder='price' type='number' onChange={handlePrice}/>
+          </div>
+          <textarea className='w-100 h-100' placeholder='Description' onChange={handleDescription}/>
+        </div>
         {warning && <Badge variant='secondary'>Missing Fields</Badge>}
       </Modal.Body>
 
