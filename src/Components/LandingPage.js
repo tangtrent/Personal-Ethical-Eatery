@@ -34,7 +34,6 @@ const LandingPage = (props) => {
           eachRestaurantDoc.restaurantId = eachDoc.id;
           return eachRestaurantDoc;
         });
-        console.log(data)
         if (data.length === 0) {
           setShowModal(true);
         }
@@ -44,22 +43,6 @@ const LandingPage = (props) => {
         console.log(err)
       })
   }
-
-  // const onTypeSearch = () => {
-  //   firestore.collection('restaurants').where('searchTerms', 'array-contains', `${search}`).get()
-  //     .then((querySnapshot) => {
-  //       const data = querySnapshot.docs.map((eachDoc) => {
-  //         let eachRestaurantDoc = eachDoc.data();
-  //         eachRestaurantDoc.restaurantId = eachDoc.id;
-  //         return eachRestaurantDoc;
-  //       });
-  //       console.log(data)
-  //       setRestaurants(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
 
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
@@ -81,9 +64,11 @@ const LandingPage = (props) => {
       </Navbar>
 
       <Card style={{height: "65vh", border: "0px solid"}}>
-        <Card.Body className='d-flex justify-content-center '>
+        <h1 className="text-center">WELCOME TO ETHICAL EATERY!</h1>
+        <Card.Body className='d-flex justify-content-center'>
           <Form onSubmit={(event) => {event.preventDefault(); submitSearch()}}>
-            <h1>Where are we eating today?</h1>
+            <div>{''}</div>
+            <h3>Where Are We Eating Today?</h3>
             <Form.Group controlId="formRestaurantSearch" className="d-flex">
               <Form.Control type="text" placeholder="Search Restaurants..." className="mr-sm-2" onChange={(event) => {setSearch(event.target.value)}}/>
               <Button className="btn-danger" onClick={submitSearch}>Search</Button>
@@ -91,8 +76,8 @@ const LandingPage = (props) => {
           </Form>
         </Card.Body>
         <Modal show={showModal} onHide={() => setShowModal(false)} size='sm' centered>
-          <Modal.Header closeButton>
-            <Modal.Title>Invalid Search</Modal.Title>
+          <Modal.Header>
+            <Modal.Title>No Results Found</Modal.Title>
           </Modal.Header>
           <Modal.Body>Please Try Again</Modal.Body>
           <Modal.Footer>

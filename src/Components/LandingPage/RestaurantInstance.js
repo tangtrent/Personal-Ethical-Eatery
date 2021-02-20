@@ -10,7 +10,9 @@ export default function RestaurantInstance(props) {
 
     <Card className="mb-2 p-2 d-flex" style={{}}>
     <div className="d-flex flex-row">
-      <Card.Img src={restaurantImgUrl}  style={{ width: '40%', height: "auto"}}/>
+      <div className="d-flex align-items-center">
+        <Card.Img src={restaurantImgUrl}  style={{ width: '400px', objectFit: 'contain' }}/>
+      </div>
       <Card.Body className='d-flex flex-column justify-content-between' style={{}}>
         <div className='d-flex justify-content-between p-4'style={{ backgroundColor: '#e9ecef', marginTop: '0%' }}>
           <span>
