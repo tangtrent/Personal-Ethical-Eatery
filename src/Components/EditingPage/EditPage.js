@@ -1,4 +1,4 @@
-import { Container, Row, Navbar, Nav, Form, FormControl, Button, Card } from 'react-bootstrap'
+import { Container, Row, Navbar, Nav, Form, FormControl, Button, Card, Tab, Tabs } from 'react-bootstrap'
 import { useState, useEffect} from 'react'
 import Menu from './Menu'
 import Contact from './Contact'
@@ -7,6 +7,7 @@ import EditMenuItemModal from './EditMenuItemModal'
 import AddMenuItemModal from './AddMenuItemModal'
 import ContactModal from './ContactModal'
 import AboutUsModal from './AboutUsModal'
+import { Link } from 'react-router-dom'
 import { firestore } from '../../firebase'
 
 
@@ -16,7 +17,6 @@ function EditPage({ editId }) {
   const [contactModal, setContactModal] = useState(false)
   const [aboutUsModal, setAboutUsModal] = useState(false)
   const [selectedEdit, setSelectedEdit] = useState(0)
-  const [page , setPage] = useState('Menu')
   const [item, setItem] = useState({aboutUs: 'asdf', address: {city: 'asdf', state: 'asdf', streetNumber: 'asdf', zip: 'asdf'}, imgurl: '', menu: [{description: 'asdf', itemImgUrl: 'asdf', itemType: 'asdf', name: 'asdf', price: 'asdf'}], name: 'asdf', phone: 'asdf', type: ['','','']})
 
   let query = firestore.collection("restaurants").doc(`${editId}`);
@@ -86,28 +86,41 @@ function EditPage({ editId }) {
   console.log('infinite loop')
   return (
     <Container className='d-flex align-text-center justify-content-between flex-column' style={{ minHeight: "100vh"}}>
-      <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px"}}>
-        <Navbar.Brand onClick={() => console.log('Har Har')}>Home</Navbar.Brand>
-        <Nav>
-          <Nav.Link onClick={() => setPage('Menu')}>Menu</Nav.Link>
-          <Nav.Link onClick={() => setPage('Contact')}>Contact</Nav.Link>
-          <Nav.Link onClick={() => setPage('AboutUs')}>AboutUs</Nav.Link>
+      <Navbar className='d-flex align-items-center mh-20' style={{minHeight: "20px"}}>
+        <Nav variant="pills">
+          <Link to='/dashboard'>
+            Back
+          </Link>
         </Nav>
       </Navbar>
 
-      <Card className='d-flex justify-content-start' style={{height: "65vh"}}>
-        {page === "Menu" && <Menu item={item} restaurantId={editId} handleOpen={showAddModal} selection={(selected) => handleSelection(selected)} deletion={(deleted) => handleDeletion(deleted)}/>}
-        {page === "Contact" && <Contact item={item} handleOpen={showContactModal}/>}
-        {page === "AboutUs" && <AboutUs item={item} handleOpen={showAboutUsModal}/>}
-      </Card>
+      <Tabs fill defaultActiveKey='Menu' id='options-tab' style={{fontSize: '1rem', borderBottom: "1px solid #dee2e6"}}>
+            <Tab eventKey='Menu' title='Menu'>
+              <Tab.Pane className='d-flex justify-content-center overflow-auto mt-5' style={{  height: '75vh'}}>
+                <Menu item={item} restaurantId={editId} handleOpen={showAddModal} selection={(selected) => handleSelection(selected)} deletion={(deleted) => handleDeletion(deleted)}/>
+              </Tab.Pane>
+            </Tab>
+            <Tab eventKey='about' title='About Us'>
+              <Tab.Pane className='d-flex justify-content-center mt-5' style={{overflowY: 'auto', height: '75vh'}}>
+                <AboutUs item={item} handleOpen={showAboutUsModal}/>
+              </Tab.Pane>
+            </Tab>
+            <Tab eventKey='contact' title='Contact'>
+              <Tab.Pane className='d-flex justify-content-center mt-5' style={{overflowY: 'auto', height: '75vh'}}>
+                <Contact item={item} handleOpen={showContactModal}/>
+              </Tab.Pane>
+            </Tab>
+          </Tabs>
 
-      <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{minHeight: "100px"}}>
+      <Navbar className='d-flex justify-content-center align-items-center mh-20' style={{borderTop: "1px solid #dee2e6"}}>
+        <Navbar.Brand></Navbar.Brand>
         <Nav>
-          <Nav.Link></Nav.Link>
-          <Nav.Link></Nav.Link>
-          <Nav.Link></Nav.Link>
+          <Nav.Link>Yelp</Nav.Link>
+          <Nav.Link>Facebook</Nav.Link>
+          <Nav.Link>Instagram</Nav.Link>
         </Nav>
       </Navbar>
+
       <EditMenuItemModal item={item.menu[selectedEdit]} index={selectedEdit} menu={item.menu} show={editModal} handleClose={showEditModal} restaurantId={editId}/>
       <AddMenuItemModal show={addModal} handleClose={showAddModal} menu={item.menu} restaurantId={editId}/>
       <ContactModal show={contactModal} handleClose={showContactModal} restaurantId={editId}/>

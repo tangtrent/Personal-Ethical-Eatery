@@ -3,27 +3,30 @@ import { Container, Row, Navbar, Nav, Form, FormControl, Button, Card, Figure } 
 export default function MenuItem(props) {
   return(
     props.menu.map((item, index) => {
-      return(
-        <Card key={index} className='d-flex flex-row align-items-start p-3 m-1'>
-          <Figure >
-            <Figure.Image
-              width={150}
-              height={150}
-              alt="171x180"
-              src={item.itemImgUrl}
-            />
-          </Figure>
-          <Card.Header className='w-25 h-75'>
-            <Card.Title>{item.name}</Card.Title>
-            <Card.Subtitle>${item.price}</Card.Subtitle>
-          </Card.Header>
-          <Card.Body className='w-75 h-75'>
-            {item.description}
-          </Card.Body>
-          <Card.Title onClick={() => props.selection(index)} style={{cursor: "pointer"}}>Edit</Card.Title>
-          <Card.Title onClick={() => props.deletion(index)} style={{position: "absolute", right: 0, bottom: 0, paddingRight: "10px", cursor: "pointer"}}>Delete</Card.Title>
-        </Card>
-      )
+
+        return (
+          <Card className="mb-2 p-2 d-flex" style={{}}>
+            <div className="d-flex flex-row">
+              <img src={item.itemImgUrl}  style={{ width: '25vh', objectFit: 'contain' }}/>
+              <Card.Body className='d-flex flex-column justify-content-between align-top'>
+                <div className='d-flex justify-content-between p-4 align-top' style={{ backgroundColor: '#e9ecef' }}>
+                  <span>{item.name}</span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span>${item.price}</span>
+                </div>
+                <div className="mt-2 p-4">
+                  <strong>Description:<br/>{'     '}</strong>{item.description}
+                </div>
+                <div className='d-flex justify-content-end'>
+                  <Button variant="primary" size="sm" className="mt-2 w-25" onClick={() => props.selection(index)}>Edit</Button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Button variant="danger" size="sm" className="mt-2 w-25" onClick={() => props.deletion(index)}>Delete</Button>
+              </div>
+              </Card.Body>
+            </div>
+          </Card>
+        )
+
     })
   )
 }

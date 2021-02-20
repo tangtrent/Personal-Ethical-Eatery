@@ -3,9 +3,9 @@ import MenuItem from './MenuItem'
 
 export default function Menu(props) {
   return(
-    <>
+    <Card  className="" style={{border: "0px"}}>
       <button onClick={props.handleOpen}>Add Menu Item</button>
       <MenuItem menu={props.item.menu} selection={(selected) => props.selection(selected)} deletion={(deleted) => props.deletion(deleted)}/>
-    </>
+    </Card>
   )
 }
