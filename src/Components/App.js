@@ -11,7 +11,8 @@ import LogIn from './SignIn/LogIn';
 import Dashboard from './Dashboard/Dashboard';
 import PrivateRoute from './SignIn/PrivateRoute';
 import ModalPage from './CreateRestaurant/ModalPage';
-import EditingPage from './EditingPage/EditPage'
+import EditingPage from './EditingPage/EditPage';
+import Josh from './Restaurant/Josh';
 
 function App() {
   // const history = useHistory();
@@ -38,6 +39,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={LogIn} />
             <Route path="/restaurant" render={() => {return <Restaurant restaurantId={restaurantId}/>}} />
+            <Route path="/ithertz" component={Josh} />
             <PrivateRoute path="/dashboard" render={() => {return <Dashboard editRestaurantId={editRestaurantId}/>}}/>
             <PrivateRoute path='/modalpage' render={() => {return <ModalPage editRestaurantId={editRestaurantId}/>}}/>
             <PrivateRoute path='/editing' render={() => {return <EditingPage editId={editId}/>}}/>

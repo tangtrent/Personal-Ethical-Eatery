@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, Image, Button } from 'react-bootstrap'
 
 export default function MenuItemInstance({ currentMenuItem, handleAddToCart }) {
-  // console.log(currentMenuItem)
   return (
     <Card className="mb-2 p-2 d-flex" style={{}}>
       <div className="d-flex flex-row">

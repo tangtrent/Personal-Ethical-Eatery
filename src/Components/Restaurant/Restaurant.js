@@ -84,7 +84,7 @@ export default function Restaurant(props) {
         <Navbar.Brand></Navbar.Brand>
         <Nav>
           <Nav.Link>Yelp</Nav.Link>
-          <Nav.Link>Facebook</Nav.Link>
+          <Nav.Link href="/ithertz">Facebook</Nav.Link>
           <Nav.Link>Instagram</Nav.Link>
         </Nav>
       </Navbar>
