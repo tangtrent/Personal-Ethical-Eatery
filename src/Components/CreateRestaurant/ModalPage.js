@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 
 import { Container, Modal, Form, InputGroup, Col, Button, Row, ListGroup } from 'react-bootstrap';
 import { useAuth } from '../../Context/AuthContext';
-import { firestore } from '../../firebase.js';
+import { firestore, storage } from '../../firebase.js';
 
 export default function ModalPage({ editRestaurantId }) {
   const { currentUser } = useAuth();
@@ -20,6 +20,7 @@ export default function ModalPage({ editRestaurantId }) {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [about, setAbout] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
   const history = useHistory();
 
   const handleShow = () => { setShowFirst(true); setShowNext(false)}
@@ -100,6 +101,10 @@ export default function ModalPage({ editRestaurantId }) {
       restaurauntType: foodTypes,
       restaurantImgUrl: '',
       owner: currentUser.uid,
+      mainImg: selectedFile
+    })
+    .then(() => {
+
     })
     .then(doc => {
       editRestaurantId(doc.id);
@@ -107,7 +112,17 @@ export default function ModalPage({ editRestaurantId }) {
     })
   }
 
-  console.log(userInfo)
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    const metadata = {
+      contentType: file.type
+    };
+    storage.ref().child(file.name).put(file, metadata)
+      .on('state_changed', (snapshot) => {
+        console.log(snapshot)
+      })
+
+  }
 
   useEffect(() => {
     try {
@@ -120,7 +135,7 @@ export default function ModalPage({ editRestaurantId }) {
       console.error(err)
     }
   }, [])
-  console.log(name)
+  console.log(selectedFile)
   return (
     <>
       <Modal show={showFirst} onHide={() => {}}>
@@ -195,6 +210,9 @@ export default function ModalPage({ editRestaurantId }) {
                   })}
                 </ListGroup>
               </Form.Row>
+              <Form.Group onSubmit={() => handleFile()}>
+                <input type='file' onChange={handleFile}></input>
+              </Form.Group>
             </Col>
             <div className='mt-5' onClick={handleSubmit}>
               <Button className='m-auto' variant='danger' style={{display: 'block', height: '7vh', width: '20vh', paddingTop: '3%'}}>Finish</Button>
