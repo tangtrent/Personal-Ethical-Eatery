@@ -19,7 +19,7 @@ export default function EditMenuItem(props) {
     setName(e.target.value)
   }
   const handlePrice = (e) => {
-    setPrice(e.target.value)
+    setPrice(Number(e.target.value))
   }
   const handleDescription = (e) => {
     setDescription(e.target.value)
@@ -42,6 +42,11 @@ export default function EditMenuItem(props) {
       })
       .then(() => {
         props.handleClose()
+        setName('')
+        setProgress(0)
+        setDescription('')
+        setItemImgUrl('')
+        setProgress(0)
       })
       .catch(() => {
         console.error('Update Failure')
