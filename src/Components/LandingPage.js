@@ -64,7 +64,7 @@ const LandingPage = (props) => {
       </Navbar>
 
       <Card style={{height: "65vh", border: "0px solid"}}>
-        <img src="https://firebasestorage.googleapis.com/v0/b/ethical-eater.appspot.com/o/Welcome%20Racoon.jpg?alt=media&token=c964e360-9b64-4bdb-b25d-a6f9842685e6" style={{zIndex: "", height: "50%", width: "50%", border: "", margin: "auto", display: `${showImage}`, animation: "fadeIn ease 20s", transition: "all 10s linear"}}></img>
+        <img src="https://firebasestorage.googleapis.com/v0/b/ethical-eater.appspot.com/o/EERacoon2.jpg?alt=media&token=0fca548a-de84-47c0-96e2-e2d0eb93f590" style={{zIndex: "", height: "auto", width: "50%", border: "", margin: "auto", display: `${showImage}`, animation: "fadeIn ease 20s", transition: "all 10s linear"}}></img>
         {/* <h1 className="text-center">WELCOME TO ETHICAL EATERY!</h1> */}
         <Card.Body className='d-flex justify-content-center'>
           <Form onSubmit={(event) => {event.preventDefault(); submitSearch()}}>
