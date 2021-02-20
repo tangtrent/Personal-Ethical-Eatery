@@ -91,6 +91,7 @@ function EditPage({ editId }) {
           <Link to='/dashboard'>
             Back
           </Link>
+          <Nav.Link href="/">Home</Nav.Link>
         </Nav>
       </Navbar>
 
