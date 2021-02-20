@@ -36,7 +36,7 @@ const LandingPage = (props) => {
           return eachRestaurantDoc;
         });
         if (data.length === 0) {
-          setShowModal(true);
+          return setShowModal(true);
         }
         setRestaurants(data);
         setShowImage('none')
