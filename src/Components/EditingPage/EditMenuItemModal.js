@@ -1,6 +1,6 @@
-import { Container, Row, Navbar, Nav, Form, FormControl, Button, Card, Figure, Modal, Badge } from 'react-bootstrap'
+import { Container, Row, Navbar, Nav, Form, FormControl, Button, Card, Figure, Modal, Badge, ProgressBar } from 'react-bootstrap'
 import { useState } from 'react'
-import { firestore } from '../../firebase'
+import { firestore, storage } from '../../firebase'
 
 export default function EditMenuItem(props) {
   const [name, setName] = useState('')
@@ -8,6 +8,7 @@ export default function EditMenuItem(props) {
   const [description, setDescription] = useState('')
   const [itemType, setItemType] = useState('')
   const [itemImgUrl, setItemImgUrl] = useState('')
+  const [progress, setProgress] = useState(0)
   const [warning, setWarning] = useState(false)
 
   let query = firestore.collection("restaurants").doc(props.restaurantId);
@@ -26,12 +27,12 @@ export default function EditMenuItem(props) {
   const handleItemType = (e) => {
     setItemType(e.target.value)
   }
-  const handleItemImgUrl = (e) => {
-    setItemImgUrl(e.target.value)
-  }
+  // const handleItemImgUrl = (e) => {
+  //   setItemImgUrl(e.target.value)
+  // }
 
   const handleSubmit = () => {
-    if (name.length === 0 || price === null || description.length === 0 || itemType.length === 0 || itemImgUrl.length === 0) {
+    if (name.length === 0 || price === null || description.length === 0 || itemImgUrl.length === 0) {
       setWarning(true)
     } else {
       setWarning(false)
@@ -48,6 +49,26 @@ export default function EditMenuItem(props) {
     }
   }
 
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    const metadata = {
+      contentType: file.type
+    };
+    storage.ref().child(file.name).put(file, metadata)
+      .on('state_changed' , (snapshot => {
+        setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      }), (err) => {
+        console.error(err)
+      }, () => {
+        storage.ref().child(file.name).getDownloadURL()
+        .then(url => {
+          console.log(url)
+          setItemImgUrl(url);
+        })
+      })
+
+  }
+
 
   return(
     <Modal size='lg' show={props.show} onHide={() => {
@@ -60,7 +81,11 @@ export default function EditMenuItem(props) {
 
       <Modal.Body className='d-flex'>
         <div className='w-50'>
-          <input placeholder='Item Image Url' onChange={handleItemImgUrl}/>
+          <Form.Group className='mt-3' onSubmit={() => handleFile()}>
+            <Form.Label>Upload Image</Form.Label>
+            <Form.File.Input onChange={handleFile}></Form.File.Input>
+            <ProgressBar now={progress} className='mt-2'/>
+          </Form.Group>
         </div>
         <div className='d-flex flex-column'>
           <div>
@@ -75,6 +100,8 @@ export default function EditMenuItem(props) {
         <Button variant="secondary" onClick={() => {
           setWarning(false)
           props.handleClose()
+          setItemImgUrl('')
+          setProgress(0)
         }}>Close</Button>
         <Button variant="primary" onClick={handleSubmit}>Save changes</Button>
       </Modal.Footer>
