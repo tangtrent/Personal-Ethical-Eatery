@@ -13,6 +13,10 @@ export default function Contact({ restaurant }) {
       {restaurant.address.city},{' '}
       {restaurant.address.state},{' '}
       {restaurant.address.zip}
+      <br/>
+      {restaurant.phone}
+      <br/>
+      {restaurant.email}
     </Card>
   )
 }
