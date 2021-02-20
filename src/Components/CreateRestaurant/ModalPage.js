@@ -126,7 +126,6 @@ export default function ModalPage({ editRestaurantId }) {
           setSelectedFile(url);
         })
       })
-
   }
 
   useEffect(() => {
