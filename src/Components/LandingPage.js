@@ -14,6 +14,7 @@ const LandingPage = (props) => {
   const { currentUser, logout } = useAuth()
   const history = useHistory()
   const [showModal, setShowModal] = useState(false);
+  const [showImage, setShowImage] = useState('block');
 
   async function handleLogout() {
     setError('')
@@ -38,6 +39,7 @@ const LandingPage = (props) => {
           setShowModal(true);
         }
         setRestaurants(data);
+        setShowImage('none')
       })
       .catch((err) => {
         console.log(err)
@@ -49,8 +51,6 @@ const LandingPage = (props) => {
 
       <Navbar className='d-flex justify-content-end' style={{minHeight: "100px"}}>
         <Nav>
-          {/* <Link to="LogIn">Log In |</Link>
-          <Link to="SignUp">| Sign Up</Link> */}
           {currentUser ?
           <>
             <Nav.Link href='dashboard'>Profile</Nav.Link>
@@ -64,15 +64,18 @@ const LandingPage = (props) => {
       </Navbar>
 
       <Card style={{height: "65vh", border: "0px solid"}}>
-        <h1 className="text-center">WELCOME TO ETHICAL EATERY!</h1>
+        <img src="https://firebasestorage.googleapis.com/v0/b/ethical-eater.appspot.com/o/Welcome%20Racoon.jpg?alt=media&token=c964e360-9b64-4bdb-b25d-a6f9842685e6" style={{zIndex: "", height: "50%", width: "50%", border: "", margin: "auto", display: `${showImage}`, animation: "fadeIn ease 20s", transition: "all 10s linear"}}></img>
+        {/* <h1 className="text-center">WELCOME TO ETHICAL EATERY!</h1> */}
         <Card.Body className='d-flex justify-content-center'>
           <Form onSubmit={(event) => {event.preventDefault(); submitSearch()}}>
-            <div>{''}</div>
-            <h3>Where Are We Eating Today?</h3>
-            <Form.Group controlId="formRestaurantSearch" className="d-flex">
-              <Form.Control type="text" placeholder="Search Restaurants..." className="mr-sm-2" onChange={(event) => {setSearch(event.target.value)}}/>
-              <Button className="btn-danger" onClick={submitSearch}>Search</Button>
-            </Form.Group>
+            {/* <div>{''}</div> */}
+            <div className="mb-4" style={{border: "", width: "100%"}}>
+              <h2>Where Are We Eating Today?</h2>
+            </div>
+              <Form.Group controlId="formRestaurantSearch" className="d-flex">
+                <Form.Control type="text" placeholder="Search Restaurants..." className="mr-sm-2" onChange={(event) => {setSearch(event.target.value)}}/>
+                <Button className="btn-danger" onClick={submitSearch}>Search</Button>
+              </Form.Group>
           </Form>
         </Card.Body>
         <Modal show={showModal} onHide={() => setShowModal(false)} size='sm' centered>
