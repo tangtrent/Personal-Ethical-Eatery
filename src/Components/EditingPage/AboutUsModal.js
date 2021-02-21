@@ -61,6 +61,9 @@ export default function AboutUsModal(props) {
     <Modal show={props.show} onHide={() => {
       setWarning(false)
       props.handleClose()
+      setProgress(0)
+      setAboutUs('')
+      setRestaurantImgUrl('')
     }}>
       <Modal.Header closeButton>
         <textarea className='w-100 h-100' placeholder='About Us' onChange={handleAboutUs}/>
