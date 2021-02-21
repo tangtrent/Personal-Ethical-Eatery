@@ -8,18 +8,18 @@ export default function RestaurantInstance(props) {
   let { restaurantImgUrl, name, aboutUs, restaurantType, restaurantId } = eachRestaurant;
   return (
 
-    <Card className="mb-2 p-2 d-flex" style={{}}>
+    <Card className="mb-2 p-2 d-flex">
     <div className="d-flex flex-row">
       <div className="d-flex align-items-center">
         <Card.Img src={restaurantImgUrl}  style={{ width: '400px', objectFit: 'contain' }}/>
       </div>
-      <Card.Body className='d-flex flex-column justify-content-between' style={{}}>
+      <Card.Body className='d-flex flex-column justify-content-between'>
         <div className='d-flex justify-content-between p-4'style={{ backgroundColor: '#e9ecef', marginTop: '0%' }}>
           <span>
             {name}
           </span>
           <span>
-            <Link to='/restaurant' onClick={() => {viewRestaurant(restaurantId)}}>View Restaurant</Link>
+            <Link to='/restaurant' onClick={() => {viewRestaurant(restaurantId)}} style={{textDecoration: "none", color: "#274C77"}}>View Restaurant</Link>
           </span>
         </div>
         <div className="mt-2 p-4" style={{border: '0'}}>
