@@ -4,19 +4,30 @@ import { Card } from 'react-bootstrap'
 export default function Contact({ restaurant }) {
   return (
     <Card className="mx-auto text-center" style={{ width: "400px", border: "0px" }}>
-      {restaurant.name}
+      <span>
+      <strong>{restaurant.name}</strong>
       <br/>
+      </span>
+      <span>
       {restaurant.imgurl}
       <br/>
-      {restaurant.address.streetNumber}
-      <br/>
+      </span>
+      <span>
+      <strong>Address: </strong>{restaurant.address.streetNumber}
+      </span>
+      <span>
       {restaurant.address.city},{' '}
       {restaurant.address.state},{' '}
       {restaurant.address.zip}
       <br/>
-      {restaurant.phone}
+      </span>
+      <span>
+      <strong>Phone: </strong>{restaurant.phone}
       <br/>
-      {restaurant.email}
+      </span>
+      <span>
+      <strong>Email: </strong>{restaurant.email}
+      </span>
     </Card>
   )
 }

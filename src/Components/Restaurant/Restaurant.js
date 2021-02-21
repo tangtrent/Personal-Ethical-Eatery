@@ -13,7 +13,7 @@ const stripePromise = loadStripe('pk_test_51ILuS0Fp1MZdStAzmZuANmYRFR8ahWoReeciJ
 
 export default function Restaurant(props) {
 
-  const [restaurant, setRestaurant] = useState({menu: [{itemImgUrl: 'https://picsum.photos/200',}], address: {}})
+  const [restaurant, setRestaurant] = useState({menu: [{itemImgUrl: '',}], address: {}})
   const [cart, setCart] = useState([])
   const [total, setTotal] = useState(0)
 
