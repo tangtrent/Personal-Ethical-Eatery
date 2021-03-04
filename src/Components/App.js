@@ -1,4 +1,3 @@
-import '../App.css';
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
 import { Container } from 'react-bootstrap';

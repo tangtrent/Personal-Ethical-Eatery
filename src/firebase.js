@@ -4,13 +4,12 @@ import "firebase/firestore";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB9n98NjbvVOpG4iWtYx6RFSwvdmKa8Xc4',
-  authDomain: 'ethical-eater.firebaseapp.com',
-  projectId: 'ethical-eater',
-  storageBucket: 'ethical-eater.appspot.com',
-  messagingSenderId: '1019884864903',
-  appId: '1:1019884864903:web:098499a4dd3c2d9fe2ff22',
-  measurementId: 'G-GWHK1SW149'
+  apiKey: "AIzaSyAATxZKEYqfKS7uFCEV08wxUlktTvbsvyw",
+  authDomain: "personal-ethical-eater.firebaseapp.com",
+  projectId: "personal-ethical-eater",
+  storageBucket: "personal-ethical-eater.appspot.com",
+  messagingSenderId: "272327897616",
+  appId: "1:272327897616:web:829bd098f389df56805095"
 };
 
 const provider = new firebase.auth.GoogleAuthProvider();
